@@ -1,8 +1,8 @@
-name = "baremetal"
+name = "spotlight"
 license = "MIT"
-licenselink = "https://github.com/kawishkamd/hugo-theme-baremetal/blob/main/LICENSE"
-description = "A spotlight-driven, zero-dependency, high-performance portfolio theme for software engineers and developers."
-homepage = "https://github.com/kawishkamd/hugo-theme-baremetal"
+licenselink = "https://github.com/kawishkamd/hugo-theme-spotlight/blob/main/LICENSE"
+description = "A modern spotlight-driven, zero-dependency portfolio theme for software engineers and developers."
+homepage = "https://github.com/kawishkamd/hugo-theme-spotlight"
 demosite = "https://kawishkamd.github.io"
 tags = ["portfolio", "software-engineer", "spotlight", "minimal", "dark-mode", "clean", "responsive", "developer"]
 features = [

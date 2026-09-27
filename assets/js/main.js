@@ -1,5 +1,5 @@
 /**
- * Hugo Baremetal Theme Engine
+ * Hugo Spotlight Theme Engine
  * 100% Pure Vanilla JS - No Libraries, 0 External Calls
  */
 

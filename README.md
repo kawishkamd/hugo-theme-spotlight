@@ -1,10 +1,10 @@
-# Baremetal — Hugo Portfolio Theme
+# Spotlight — Hugo Portfolio Theme
 
-A spotlight-driven, high-performance personal portfolio theme engineered for software engineers, backend architects, and full-stack developers.
+A modern spotlight-driven, high-performance personal portfolio theme engineered for software engineers, backend architects, and full-stack developers.
 
 Zero external runtime dependencies. Zero npm packages. 100% Google Lighthouse scores. Sub-50ms build times.
 
-![Baremetal Screenshot](images/screenshot.png)
+![Spotlight Screenshot](images/screenshot.png)
 
 ---
 
@@ -31,19 +31,19 @@ git init
 ```
 
 ### 2. Install the Theme
-Add Baremetal as a Git submodule:
+Add Spotlight as a Git submodule:
 ```bash
-git submodule add https://github.com/kawishkamd/hugo-theme-baremetal.git themes/baremetal
+git submodule add https://github.com/kawishkamd/hugo-theme-spotlight.git themes/spotlight
 ```
 
 ### 3. Copy Example Site Data (Recommended)
 Get started immediately by copying the demo content and configuration:
 ```bash
-cp -r themes/baremetal/exampleSite/* .
+cp -r themes/spotlight/exampleSite/* .
 rm hugo.toml   # Hugo uses the copied hugo.yaml
 ```
 
-*(Note: Even without copying `exampleSite`, Baremetal ships with built-in demo data, so setting `theme = "baremetal"` in your `hugo.toml` works immediately!)*
+*(Note: Even without copying `exampleSite`, Spotlight ships with built-in demo data, so setting `theme = "spotlight"` in your `hugo.toml` works immediately!)*
 
 ### 4. Run the Development Server
 ```bash
@@ -55,13 +55,13 @@ Open your browser to `http://localhost:1313/` to view your site!
 
 ## ⚙️ Configuration (`hugo.yaml`)
 
-Baremetal is 100% "variable-ready". Customize everything inside your `hugo.yaml` without touching HTML:
+Spotlight is 100% "variable-ready". Customize everything inside your `hugo.yaml` without touching HTML:
 
 ```yaml
 baseURL: 'https://example.com/'
 locale: 'en-us'
 title: 'Alex Rivera | Software Engineer'
-theme: 'baremetal'
+theme: 'spotlight'
 
 params:
   # Identity & Header
@@ -123,10 +123,10 @@ menus:
 
 ## 📊 Generating Your GitHub Heatmap
 
-Baremetal includes a zero-dependency Python script to scrape your live GitHub contribution graph and output the exact JSON structure:
+Spotlight includes a zero-dependency Python script to scrape your live GitHub contribution graph and output the exact JSON structure:
 
 ```bash
-python themes/baremetal/tools/fetch_contributions.py <your-github-username> data/github_contributions.json
+python themes/spotlight/tools/fetch_contributions.py <your-github-username> data/github_contributions.json
 ```
 
 You can automate this in your CI/CD pipeline (e.g. GitHub Actions) to refresh your heatmap weekly or on every deployment!
