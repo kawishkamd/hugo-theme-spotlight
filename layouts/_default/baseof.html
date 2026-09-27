@@ -143,10 +143,10 @@
             {{ end }}
           {{ else }}
             {{ $prefix := cond (eq .Kind "home") "" ("/" | relLangURL) }}
-            <li><a href="{{ $prefix }}#projects" class="nav-link">Projects</a></li>
-            <li><a href="{{ $prefix }}#experience" class="nav-link">Experience</a></li>
-            <li><a href="{{ $prefix }}#github-activity" class="nav-link">Activity</a></li>
-            <li><a href="{{ $prefix }}#contact" class="nav-link">Contact</a></li>
+            {{ if ne .Site.Params.sections.projects false }}<li><a href="{{ $prefix }}#projects" class="nav-link">Projects</a></li>{{ end }}
+            {{ if ne .Site.Params.sections.experience false }}<li><a href="{{ $prefix }}#experience" class="nav-link">Experience</a></li>{{ end }}
+            {{ if ne .Site.Params.sections.github_activity false }}<li><a href="{{ $prefix }}#github-activity" class="nav-link">Activity</a></li>{{ end }}
+            {{ if ne .Site.Params.sections.contact false }}<li><a href="{{ $prefix }}#contact" class="nav-link">Contact</a></li>{{ end }}
           {{ end }}
         </ul>
 
@@ -170,9 +170,13 @@
     <div class="container-portfolio footer-inner">
       <div>
         <p>© {{ now.Format "2006" }} {{ $author }}. All rights reserved.</p>
-        <p class="footer-quote" style="margin-top: 0.25rem; font-size: 0.775rem;">
-          {{ .Site.Params.footer_quote | default "Writing clean code. Shipping reliable systems." }}
-        </p>
+        {{ if isset .Site.Params "footer_quote" }}
+          {{ with .Site.Params.footer_quote }}
+          <p class="footer-quote" style="margin-top: 0.25rem; font-size: 0.775rem;">{{ . }}</p>
+          {{ end }}
+        {{ else }}
+          <p class="footer-quote" style="margin-top: 0.25rem; font-size: 0.775rem;">Writing clean code. Shipping reliable systems.</p>
+        {{ end }}
       </div>
       <div class="footer-right">
         <ul class="footer-links">
