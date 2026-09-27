@@ -2,13 +2,15 @@
 <html lang="{{ .Site.Language.Locale | default "en" }}">
 <head>
   {{ $isHome := eq .Kind "home" }}
-  {{ $siteTitle := .Site.Title }}
-  {{ $author := .Site.Params.author }}
-  {{ $defaultDescription := .Site.Params.site_description | default .Site.Params.hero_description }}
+  {{ $siteTitle := .Site.Title | default "Portfolio" }}
+  {{ $author := .Site.Params.author | default "Alex Morgan" }}
+  {{ $role := .Site.Params.role | default "Systems & Infrastructure Engineer" }}
+  {{ $defaultDescription := .Site.Params.site_description | default .Site.Params.hero_description | default "A minimalist, zero-dependency portfolio theme engineered for systems administrators and DevOps developers." }}
   {{ $pageDescriptionSource := cond $isHome $defaultDescription (.Params.description | default .Description | default .Summary | default $defaultDescription) }}
   {{ $pageDescription := $pageDescriptionSource | plainify | htmlUnescape | chomp | truncate 160 }}
-  {{ $pageTitle := cond $isHome (printf "%s | %s" $author (.Site.Params.role | default $siteTitle)) (printf "%s | %s" .Title $author) }}
-  {{ $shareImage := .Site.Params.site_image | absURL }}
+  {{ $rawTitle := .Title | default "" }}
+  {{ $pageTitle := cond $isHome (printf "%s | %s" $author ($role | default $siteTitle)) (cond (ne $rawTitle "") (printf "%s | %s" $rawTitle $author) (printf "%s | %s" $author $siteTitle)) }}
+  {{ $shareImage := (.Site.Params.site_image | default "/img/share.jpg") | absURL }}
   {{ $canonical := .Permalink }}
   {{ $localeParts := split (.Site.Language.Locale | default "en-us") "-" }}
 
@@ -121,7 +123,7 @@
   <footer class="site-footer">
     <div class="container-portfolio footer-inner">
       <div>
-        <p>© {{ now.Format "2006" }} {{ .Site.Params.author }}. All rights reserved.</p>
+        <p>© {{ now.Format "2006" }} {{ .Site.Params.author | default "Alex Morgan" }}. All rights reserved.</p>
         {{ with .Site.Params.footer_quote }}
         <p class="footer-quote">{{ . }}</p>
         {{ end }}

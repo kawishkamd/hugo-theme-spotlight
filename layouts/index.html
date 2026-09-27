@@ -1,50 +1,63 @@
 {{ define "main" }}
 
+{{ $isDemo := not .Site.Params.author }}
+{{ $author := .Site.Params.author | default "Alex Morgan" }}
+{{ $role := .Site.Params.role | default "Systems & Infrastructure Engineer" }}
+{{ $heroDesc := .Site.Params.hero_description | default "Automating systems and building reliable infrastructure from bare metal to cloud." }}
+{{ $avatar := .Site.Params.avatar | default (cond $isDemo "/img/avatar.webp" "") }}
+{{ $showVerified := cond (isset .Site.Params "verified_badge") .Site.Params.verified_badge true }}
+
+{{ $github := cond $isDemo "https://github.com/example" .Site.Params.github }}
+{{ $linkedin := cond $isDemo "https://linkedin.com/in/example" .Site.Params.linkedin }}
+{{ $youtube := cond $isDemo "" .Site.Params.youtube }}
+{{ $x := cond $isDemo "https://x.com/example" (.Site.Params.x | default .Site.Params.twitter) }}
+{{ $email := cond $isDemo "alex@example.com" .Site.Params.email }}
+
 <!-- Hero Section -->
 <section class="hero-section">
   <div class="hero-identity-row">
     <!-- Clean Circular Avatar -->
-    {{ with .Site.Params.avatar }}
+    {{ with $avatar }}
     <div class="hero-avatar-box">
-      <img src="{{ . | relURL }}" alt="{{ $.Site.Params.author }}" class="hero-avatar-img" width="160" height="160" fetchpriority="high" decoding="async">
+      <img src="{{ . | relURL }}" alt="{{ $author }}" class="hero-avatar-img" width="160" height="160" fetchpriority="high" decoding="async">
     </div>
     {{ end }}
 
     <!-- Identity & Socials -->
     <div class="hero-identity-meta">
       <h1 class="hero-name-title">
-        {{- $nameParts := split .Site.Params.author " " -}}
+        {{- $nameParts := split $author " " -}}
         {{- if gt (len $nameParts) 1 -}}
-          <span>{{ delimit (first (sub (len $nameParts) 1) $nameParts) " " }}</span> <span class="hero-name-last">{{ index $nameParts (sub (len $nameParts) 1) }}{{ if .Site.Params.verified_badge }}{{ partial "icon/verified-badge.html" . }}{{ end }}</span>
+          <span>{{ delimit (first (sub (len $nameParts) 1) $nameParts) " " }}</span> <span class="hero-name-last">{{ index $nameParts (sub (len $nameParts) 1) }}{{ if $showVerified }}{{ partial "icon/verified-badge.html" . }}{{ end }}</span>
         {{- else -}}
-          <span class="hero-name-last">{{ .Site.Params.author }}{{ if .Site.Params.verified_badge }}{{ partial "icon/verified-badge.html" . }}{{ end }}</span>
+          <span class="hero-name-last">{{ $author }}{{ if $showVerified }}{{ partial "icon/verified-badge.html" . }}{{ end }}</span>
         {{- end -}}
       </h1>
 
       <div class="hero-socials">
-        {{ if .Site.Params.github }}
-        <a href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-gh" aria-label="GitHub" title="GitHub">
-          {{ partial "icon/bxl-github.html" . }}
+        {{ with $github }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-gh" aria-label="GitHub" title="GitHub">
+          {{ partial "icon/bxl-github.html" $ }}
         </a>
         {{ end }}
-        {{ if .Site.Params.linkedin }}
-        <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-li" aria-label="LinkedIn" title="LinkedIn">
-          {{ partial "icon/bxl-linkedin.html" . }}
+        {{ with $linkedin }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-li" aria-label="LinkedIn" title="LinkedIn">
+          {{ partial "icon/bxl-linkedin.html" $ }}
         </a>
         {{ end }}
-        {{ if .Site.Params.youtube }}
-        <a href="{{ .Site.Params.youtube }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-yt" aria-label="YouTube" title="YouTube">
-          {{ partial "icon/bxl-youtube.html" . }}
+        {{ with $youtube }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-yt" aria-label="YouTube" title="YouTube">
+          {{ partial "icon/bxl-youtube.html" $ }}
         </a>
         {{ end }}
-        {{ if or .Site.Params.x .Site.Params.twitter }}
-        <a href="{{ .Site.Params.x | default .Site.Params.twitter }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-x" aria-label="X" title="X">
-          {{ partial "icon/bxl-x.html" . }}
+        {{ with $x }}
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-x" aria-label="X" title="X">
+          {{ partial "icon/bxl-x.html" $ }}
         </a>
         {{ end }}
-        {{ if .Site.Params.email }}
-        <a href="mailto:{{ .Site.Params.email }}" class="hero-social-link social-em" aria-label="Email" title="Email">
-          {{ partial "icon/bxs-envelope.html" . }}
+        {{ with $email }}
+        <a href="mailto:{{ . }}" class="hero-social-link social-em" aria-label="Email" title="Email">
+          {{ partial "icon/bxs-envelope.html" $ }}
         </a>
         {{ end }}
       </div>
@@ -52,8 +65,8 @@
   </div>
 
   <h2 class="hero-subheading">
-    {{ .Site.Params.role }}
-    {{ with .Site.Params.hero_description }}
+    {{ $role }}
+    {{ with $heroDesc }}
     <span class="hero-subheading-tagline">
       - {{ . }}
     </span>
@@ -294,39 +307,39 @@
   </div>
 
   <div class="contact-actions-list">
-    {{ if .Site.Params.email }}
+    {{ with $email }}
     <div class="contact-email-wrapper">
-      <a href="mailto:{{ .Site.Params.email }}" class="contact-action-card">
+      <a href="mailto:{{ . }}" class="contact-action-card">
         <div class="contact-action-left">
           <div class="contact-action-icon">
-            {{ partial "icon/contact-email.html" . }}
+            {{ partial "icon/contact-email.html" $ }}
           </div>
           <div>
             <div class="contact-action-label">DIRECT EMAIL</div>
-            <div class="contact-action-value">{{ .Site.Params.email }}</div>
+            <div class="contact-action-value">{{ . }}</div>
           </div>
         </div>
         <span class="contact-action-arrow">→</span>
       </a>
 
       <!-- Sticky Note Annotation -->
-      {{ if ne .Site.Params.contact_annotation false }}
+      {{ if ne $.Site.Params.contact_annotation false }}
       <aside class="contact-sticky-note" aria-hidden="true">
-        {{ partial "doodle-pointer.html" . }}
+        {{ partial "doodle-pointer.html" $ }}
       </aside>
       {{ end }}
     </div>
     {{ end }}
 
-    {{ if .Site.Params.linkedin }}
-    <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer" class="contact-action-card">
+    {{ with $linkedin }}
+    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="contact-action-card">
       <div class="contact-action-left">
         <div class="contact-action-icon">
-          {{ partial "icon/contact-linkedin.html" . }}
+          {{ partial "icon/contact-linkedin.html" $ }}
         </div>
         <div>
           <div class="contact-action-label">CONNECT ON LINKEDIN</div>
-          <div class="contact-action-value">{{ .Site.Params.linkedin_name | default .Site.Params.author }}</div>
+          <div class="contact-action-value">{{ $.Site.Params.linkedin_name | default $author }}</div>
         </div>
       </div>
       <span class="contact-action-arrow">→</span>
