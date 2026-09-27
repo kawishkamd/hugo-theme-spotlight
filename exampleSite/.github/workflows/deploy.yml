@@ -1,0 +1,58 @@
+# ==============================================================================
+# GitHub Pages Deployment Workflow
+# ==============================================================================
+# Automatically compiles and deploys your Hugo portfolio to GitHub Pages whenever
+# changes are pushed to the 'main' branch.
+#
+# SETUP INSTRUCTIONS:
+# 1. In your GitHub repository, go to: Settings -> Pages.
+# 2. Under "Build and deployment" -> "Source", select "GitHub Actions".
+# 3. Push a commit to your 'main' branch.
+# ==============================================================================
+
+name: Deploy Hugo Portfolio to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Site and Submodules
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Setup Hugo Engine
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build Minified Production Site
+        run: hugo --minify
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
