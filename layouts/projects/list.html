@@ -2,7 +2,7 @@
 <div class="dedicated-page-wrapper">
   <!-- Header -->
   <div class="dedicated-page-header">
-    <a href="{{ "/" | relLangURL }}" class="dedicated-back-link">
+    <a href="{{ site.Home.RelPermalink }}" class="dedicated-back-link">
       <svg class="back-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
         <polyline points="15 18 9 12 15 6"></polyline>
       </svg>
@@ -19,11 +19,11 @@
     <div class="card-spotlight project-card-item">
       {{ if .link }}
       <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="project-card-thumb-wrap" aria-label="Visit {{ .title }}">
-        <img src="{{ .image | relURL }}" alt="{{ .title }} preview" class="project-card-thumb" loading="lazy" width="500" height="280">
+        <img src="{{ .image | strings.TrimPrefix "/" | relURL }}" alt="{{ .title }} preview" class="project-card-thumb" loading="lazy" width="500" height="280">
       </a>
       {{ else }}
       <div class="project-card-thumb-wrap">
-        <img src="{{ .image | relURL }}" alt="{{ .title }} preview" class="project-card-thumb" loading="lazy" width="500" height="280">
+        <img src="{{ .image | strings.TrimPrefix "/" | relURL }}" alt="{{ .title }} preview" class="project-card-thumb" loading="lazy" width="500" height="280">
       </div>
       {{ end }}
       <div class="project-card-info">

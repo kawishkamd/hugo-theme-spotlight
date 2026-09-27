@@ -24,7 +24,7 @@
     <!-- Clean Circular Avatar -->
     {{ with $avatar }}
     <div class="hero-avatar-box">
-      <img src="{{ . | relURL }}" alt="{{ $author }}" class="hero-avatar-img" width="160" height="160" fetchpriority="high">
+      <img src="{{ . | strings.TrimPrefix "/" | relURL }}" alt="{{ $author }}" class="hero-avatar-img" width="160" height="160" fetchpriority="high">
     </div>
     {{ end }}
 
@@ -112,7 +112,7 @@
   <div class="card-spotlight featured-card">
     {{ with $spotlight.image }}
     <div class="featured-thumb-wrap">
-      <img src="{{ . | relURL }}" alt="{{ $spotlight.title }} Preview" class="featured-thumb" loading="lazy" width="600" height="340">
+      <img src="{{ . | strings.TrimPrefix "/" | relURL }}" alt="{{ $spotlight.title }} Preview" class="featured-thumb" loading="lazy" width="600" height="340">
     </div>
     {{ end }}
     <div class="featured-body">
@@ -147,7 +147,7 @@
 <section id="projects" class="portfolio-section">
   <div class="section-heading-row">
     <h2 class="section-title">Projects</h2>
-    <a href="{{ "/projects/" | relLangURL }}" class="section-sublink">
+    <a href="{{ "projects/" | relLangURL }}" class="section-sublink">
       <span>View All</span>
       <span class="section-sublink-arrow">→</span>
     </a>
@@ -159,11 +159,11 @@
       {{ if .image }}
       {{ if .link }}
       <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="project-card-thumb-wrap" aria-label="Visit {{ .title }}">
-        <img src="{{ .image | relURL }}" alt="{{ .title }} preview" class="project-card-thumb" loading="lazy" width="500" height="280">
+        <img src="{{ .image | strings.TrimPrefix "/" | relURL }}" alt="{{ .title }} preview" class="project-card-thumb" loading="lazy" width="500" height="280">
       </a>
       {{ else }}
       <div class="project-card-thumb-wrap">
-        <img src="{{ .image | relURL }}" alt="{{ .title }} preview" class="project-card-thumb" loading="lazy" width="500" height="280">
+        <img src="{{ .image | strings.TrimPrefix "/" | relURL }}" alt="{{ .title }} preview" class="project-card-thumb" loading="lazy" width="500" height="280">
       </div>
       {{ end }}
       {{ end }}
@@ -208,7 +208,7 @@
   </div>
 
   <div class="section-center-cta">
-    <a href="{{ "/projects/" | relLangURL }}" class="btn-primary btn-sm">
+    <a href="{{ "projects/" | relLangURL }}" class="btn-primary btn-sm">
       <span>Explore All Projects</span>
       <svg class="btn-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
         <line x1="5" y1="12" x2="19" y2="12"></line>
@@ -224,7 +224,7 @@
 <section id="experience" class="portfolio-section">
   <div class="section-heading-row">
     <h2 class="section-title">Experience</h2>
-    <a href="{{ "/experience/" | relLangURL }}" class="section-sublink">
+    <a href="{{ "experience/" | relLangURL }}" class="section-sublink">
       <span>View Details</span>
       <span class="section-sublink-arrow">→</span>
     </a>
@@ -262,7 +262,7 @@
 <section id="credentials" class="portfolio-section">
   <div class="section-heading-row">
     <h2 class="section-title">Certifications</h2>
-    <a href="{{ "/certifications/" | relLangURL }}" class="section-sublink">
+    <a href="{{ "certifications/" | relLangURL }}" class="section-sublink">
       <span>View All</span>
       <span class="section-sublink-arrow">→</span>
     </a>

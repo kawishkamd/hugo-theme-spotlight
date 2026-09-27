@@ -1,0 +1,64 @@
+# ==============================================================================
+# Official Live Demo Deployment Workflow
+# ==============================================================================
+# Compiles and deploys exampleSite to GitHub Pages at:
+# https://<username>.github.io/<repository>/
+#
+# SETUP:
+# 1. In repository Settings -> Pages:
+# 2. Set "Source" under "Build and deployment" to "GitHub Actions".
+# ==============================================================================
+
+name: Deploy Live Demo to GitHub Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Hugo Engine
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build Minified Demo Site
+        run: |
+          cd exampleSite
+          THEME_NAME=$(basename $GITHUB_WORKSPACE)
+          hugo \
+            --baseURL "https://${GITHUB_REPOSITORY_OWNER}.github.io/${THEME_NAME}/" \
+            --themesDir ../.. \
+            --theme "$THEME_NAME" \
+            --minify \
+            --destination ../public
+
+      - name: Upload Pages Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
