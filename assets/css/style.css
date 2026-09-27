@@ -123,8 +123,9 @@ img, svg {
 }
 
 /* ==========================================================================
-   Synchronized Theme Micro-Transitions (150ms Snappy & Polished)
+   Synchronized Theme Transitions (300ms Silky Smooth Fade)
    ========================================================================== */
+html,
 body,
 .site-header,
 .theme-toggle-btn,
@@ -137,6 +138,8 @@ body,
 .project-card-item,
 .project-card-thumb-wrap,
 .project-card-title,
+.project-card-role,
+.project-card-desc,
 .tabular-item,
 .tag-badge,
 .tech-chip-pill,
@@ -144,10 +147,29 @@ body,
 .timeline-dot,
 .timeline-line,
 .timeline-status-badge,
+.timeline-card,
 .nav-link,
 .dedicated-back-link,
-.back-to-top-btn {
-  transition: background-color 0.15s ease-out, color 0.15s ease-out, border-color 0.15s ease-out, box-shadow 0.15s ease-out;
+.back-to-top-btn,
+.hero-name-title,
+.hero-subheading-role,
+.hero-subheading-tagline,
+.hero-bio-text,
+.section-title,
+.section-sublink,
+.featured-title,
+.featured-desc,
+.featured-category,
+.github-container,
+.github-graph-card,
+.github-total-text,
+.github-month-label,
+.gh-day,
+.gh-legend-square,
+.nav-divider,
+.project-card-divider,
+.footer-divider {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -272,7 +294,7 @@ body,
   justify-content: center;
   width: 1.25rem;
   height: 1.25rem;
-  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
 }
 
 #theme-toggle-sun svg,
@@ -342,7 +364,7 @@ html.dark-mode #theme-toggle-moon {
   background-color: var(--surface);
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   overflow: hidden;
-  transition: border-color 0.15s ease-out;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 @media (min-width: 640px) {
@@ -504,7 +526,7 @@ html.dark-mode .hero-social-link.social-gh:hover { color: #ffffff; }
   font-weight: 500;
   padding: 0.65rem 1.35rem;
   border-radius: 0.5rem;
-  transition: transform 0.2s ease, box-shadow 0.15s ease-out, background-color 0.15s ease-out, color 0.15s ease-out;
+  transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease, color 0.3s ease;
   box-shadow: 0 1px 2px rgba(0,0,0,0.05);
 }
 
@@ -533,7 +555,7 @@ html.dark-mode .hero-social-link.social-gh:hover { color: #ffffff; }
   font-weight: 500;
   padding: 0.65rem 1.25rem;
   border-radius: 0.5rem;
-  transition: border-color 0.15s ease-out, background-color 0.15s ease-out, color 0.15s ease-out;
+  transition: border-color 0.3s ease, background-color 0.3s ease, color 0.3s ease;
 }
 
 .btn-secondary:hover {
@@ -550,7 +572,7 @@ html.dark-mode .hero-social-link.social-gh:hover { color: #ffffff; }
   background-color: var(--card-bg);
   border: 1px dashed var(--border-dashed);
   border-radius: 0.75rem;
-  transition: border-color 0.15s ease-out, background-color 0.15s ease-out;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .card-spotlight::before {
@@ -969,7 +991,7 @@ html.dark-mode .hero-social-link.social-gh:hover { color: #ffffff; }
   font-weight: 500;
   color: var(--text-secondary);
   white-space: nowrap;
-  transition: color 0.15s ease-out, border-color 0.15s ease-out, transform 0.2s ease, background-color 0.15s ease-out;
+  transition: color 0.3s ease, border-color 0.3s ease, transform 0.2s ease, background-color 0.3s ease;
 }
 
 .tech-stack-pill:hover {
@@ -1028,7 +1050,7 @@ html.dark-mode .hero-social-link.social-gh:hover { color: #ffffff; }
   height: 9px;
   border-radius: 2px;
   background-color: var(--gh-l0);
-  transition: transform 0.15s ease;
+  transition: transform 0.15s ease, background-color 0.3s ease;
 }
 
 .gh-day:hover {
@@ -1106,7 +1128,7 @@ html.dark-mode .hero-social-link.social-gh:hover { color: #ffffff; }
   border-radius: 0.75rem;
   border: 1px dashed var(--border-dashed);
   background-color: var(--card-bg);
-  transition: transform 0.2s ease, border-color 0.15s ease-out, background-color 0.15s ease-out;
+  transition: transform 0.2s ease, border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .contact-action-card:hover {
