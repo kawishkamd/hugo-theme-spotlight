@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language.Locale | default "en" }}">
+<head>
+  {{ $isHome := eq .Kind "home" }}
+  {{ $siteTitle := .Site.Title }}
+  {{ $author := .Site.Params.author }}
+  {{ $defaultDescription := .Site.Params.site_description | default .Site.Params.hero_description }}
+  {{ $pageDescriptionSource := cond $isHome $defaultDescription (.Params.description | default .Description | default .Summary | default $defaultDescription) }}
+  {{ $pageDescription := $pageDescriptionSource | plainify | htmlUnescape | chomp | truncate 160 }}
+  {{ $pageTitle := cond $isHome (printf "%s | %s" $author (.Site.Params.role | default $siteTitle)) (printf "%s | %s" .Title $author) }}
+  {{ $shareImage := .Site.Params.site_image | absURL }}
+  {{ $canonical := .Permalink }}
+  {{ $localeParts := split (.Site.Language.Locale | default "en-us") "-" }}
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+  <title>{{ .Params.seo_title | default $pageTitle }}</title>
+  {{ with .Site.Params.google_site_verification }}
+  <meta name="google-site-verification" content="{{ . }}" />
+  {{ end }}
+
+  <link rel="canonical" href="{{ $canonical }}">
+  <meta name="description" content="{{ $pageDescription }}">
+  <meta name="author" content="{{ $author }}">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ $canonical }}">
+  <meta property="og:title" content="{{ $pageTitle }}">
+  <meta property="og:description" content="{{ $pageDescription }}">
+  <meta property="og:site_name" content="{{ $siteTitle }}">
+  <meta property="og:image" content="{{ $shareImage }}">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:locale" content="{{ printf "%s_%s" (index $localeParts 0) (index $localeParts 1 | strings.ToUpper) }}">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ $pageTitle }}">
+  <meta name="twitter:description" content="{{ $pageDescription }}">
+  <meta name="twitter:image" content="{{ $shareImage }}">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/webp" href="{{ "favicon.webp" | relURL }}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon.png" | relURL }}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}">
+
+  <!-- Zero-FOUC Theme Initialization -->
+  <script>
+    (function() {
+      try {
+        var s = localStorage.getItem('theme');
+        if (s === 'dark' || (!s && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark-mode');
+        }
+      } catch (e) {}
+    })();
+  </script>
+
+  <!-- Fingerprinted & Immutable Cached Stylesheet -->
+  {{ $style := resources.Get "css/style.css" | minify | fingerprint }}
+  <link rel="stylesheet" href="{{ $style.RelPermalink }}" integrity="{{ $style.Data.Integrity }}">
+
+  <!-- Structured Data JSON-LD -->
+  {{ if $isHome }}
+  <script type="application/ld+json">
+    {{ dict
+      "@context" "https://schema.org"
+      "@type" "Person"
+      "name" $author
+      "url" .Site.BaseURL
+      "image" (.Site.Params.site_image | absURL)
+      "jobTitle" .Site.Params.role
+      "description" $defaultDescription
+      "sameAs" (slice .Site.Params.github .Site.Params.linkedin .Site.Params.youtube .Site.Params.x)
+    | jsonify | safeJS }}
+  </script>
+  {{ end }}
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <!-- Sticky Navbar -->
+  <header class="site-header">
+    <div class="container-portfolio navbar">
+      <a href="{{ "/" | relLangURL }}" class="nav-brand" aria-label="Home">
+        {{ .Site.Params.brand_text | default (.Site.Title | default "Portfolio") }}
+      </a>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          {{ if .Site.Menus.main }}
+            {{ range .Site.Menus.main }}
+            <li><a href="{{ .URL | relLangURL }}" class="nav-link{{ if eq $.RelPermalink .URL }} active{{ end }}"{{ if eq $.RelPermalink .URL }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+            {{ end }}
+          {{ else }}
+            <li><a href="{{ "/projects/" | relLangURL }}" class="nav-link{{ if eq .RelPermalink "/projects/" }} active{{ end }}"{{ if eq .RelPermalink "/projects/" }} aria-current="page"{{ end }}>Projects</a></li>
+            <li><a href="{{ "/experience/" | relLangURL }}" class="nav-link{{ if eq .RelPermalink "/experience/" }} active{{ end }}"{{ if eq .RelPermalink "/experience/" }} aria-current="page"{{ end }}>Experience</a></li>
+            <li><a href="{{ "/certifications/" | relLangURL }}" class="nav-link{{ if eq .RelPermalink "/certifications/" }} active{{ end }}"{{ if eq .RelPermalink "/certifications/" }} aria-current="page"{{ end }}>Certs</a></li>
+          {{ end }}
+        </ul>
+
+        <div class="nav-divider"></div>
+
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark mode" title="Toggle theme">
+          <span id="theme-toggle-moon">{{ partial "icon/bx-moon.html" . }}</span>
+          <span id="theme-toggle-sun">{{ partial "icon/bx-sun.html" . }}</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="container-portfolio">
+    {{ block "main" . }}{{ end }}
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container-portfolio footer-inner">
+      <div>
+        <p>© {{ now.Format "2006" }} {{ .Site.Params.author }}. All rights reserved.</p>
+        {{ with .Site.Params.footer_quote }}
+        <p class="footer-quote">{{ . }}</p>
+        {{ end }}
+      </div>
+      <div class="footer-right">
+        <ul class="footer-links">
+          {{ if .Site.Params.github }}
+          <li><a href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+          {{ end }}
+          {{ if .Site.Params.linkedin }}
+          <li><a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+          {{ end }}
+          {{ if .Site.Params.youtube }}
+          <li><a href="{{ .Site.Params.youtube }}" target="_blank" rel="noopener noreferrer">YouTube</a></li>
+          {{ end }}
+          {{ if or .Site.Params.x .Site.Params.twitter }}
+          <li><a href="{{ .Site.Params.x | default .Site.Params.twitter }}" target="_blank" rel="noopener noreferrer">X</a></li>
+          {{ end }}
+          {{ if .Site.Params.email }}
+          <li><a href="mailto:{{ .Site.Params.email }}">Email</a></li>
+          {{ end }}
+        </ul>
+        <div class="footer-divider"></div>
+        <button id="back-to-top" class="back-to-top-btn" aria-label="Back to top" title="Back to top">
+          <svg class="back-to-top-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="19" x2="12" y2="5"></line>
+            <polyline points="5 12 12 5 19 12"></polyline>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Zero-Dependency Vanilla JS Engine (Bundled & Minified by Hugo) -->
+  {{ $mainJs := resources.Get "js/main.js" | minify | fingerprint }}
+  <script src="{{ $mainJs.RelPermalink }}" integrity="{{ $mainJs.Data.Integrity }}" defer></script>
+</body>
+</html>

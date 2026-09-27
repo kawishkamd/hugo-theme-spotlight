@@ -1,0 +1,52 @@
+{{ define "main" }}
+<div class="dedicated-page-wrapper">
+  <!-- Header -->
+  <div class="dedicated-page-header">
+    <a href="{{ "/" | relLangURL }}" class="dedicated-back-link">
+      <svg class="back-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <span>Back to Home</span>
+    </a>
+
+    <h1 class="dedicated-page-title">{{ .Title }}</h1>
+    <p class="dedicated-page-desc">{{ .Params.description | default .Description }}</p>
+  </div>
+
+  <!-- Vertical Timeline -->
+  <div class="timeline-container">
+    {{ range $index, $item := hugo.Data.portfolio.experience }}
+    <div class="timeline-row">
+      <!-- Marker & Vertical Line -->
+      <div class="timeline-spine">
+        <span class="timeline-dot"></span>
+        <span class="timeline-line"></span>
+      </div>
+
+      <!-- Content Box -->
+      <div class="timeline-content">
+        <div class="timeline-date-row">
+          <p class="timeline-date">{{ .years }}</p>
+          {{ if strings.Contains .years "Present" }}
+          <span class="timeline-status-badge">
+            <span class="status-pulse-dot"></span>
+            Current
+          </span>
+          {{ end }}
+        </div>
+        <h2 class="timeline-title">{{ .title }}</h2>
+        <p class="timeline-company">{{ .company }}</p>
+        
+        {{ if .bullets }}
+        <ul class="timeline-bullets">
+          {{ range .bullets }}
+          <li>{{ . }}</li>
+          {{ end }}
+        </ul>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

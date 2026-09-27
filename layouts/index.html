@@ -1,0 +1,339 @@
+{{ define "main" }}
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="hero-identity-row">
+    <!-- Clean Circular Avatar -->
+    {{ with .Site.Params.avatar }}
+    <div class="hero-avatar-box">
+      <img src="{{ . | relURL }}" alt="{{ $.Site.Params.author }}" class="hero-avatar-img" width="160" height="160" fetchpriority="high" decoding="async">
+    </div>
+    {{ end }}
+
+    <!-- Identity & Socials -->
+    <div class="hero-identity-meta">
+      <h1 class="hero-name-title">
+        {{- $nameParts := split .Site.Params.author " " -}}
+        {{- if gt (len $nameParts) 1 -}}
+          <span>{{ delimit (first (sub (len $nameParts) 1) $nameParts) " " }}</span> <span class="hero-name-last">{{ index $nameParts (sub (len $nameParts) 1) }}{{ if .Site.Params.verified_badge }}{{ partial "icon/verified-badge.html" . }}{{ end }}</span>
+        {{- else -}}
+          <span class="hero-name-last">{{ .Site.Params.author }}{{ if .Site.Params.verified_badge }}{{ partial "icon/verified-badge.html" . }}{{ end }}</span>
+        {{- end -}}
+      </h1>
+
+      <div class="hero-socials">
+        {{ if .Site.Params.github }}
+        <a href="{{ .Site.Params.github }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-gh" aria-label="GitHub" title="GitHub">
+          {{ partial "icon/bxl-github.html" . }}
+        </a>
+        {{ end }}
+        {{ if .Site.Params.linkedin }}
+        <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-li" aria-label="LinkedIn" title="LinkedIn">
+          {{ partial "icon/bxl-linkedin.html" . }}
+        </a>
+        {{ end }}
+        {{ if .Site.Params.youtube }}
+        <a href="{{ .Site.Params.youtube }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-yt" aria-label="YouTube" title="YouTube">
+          {{ partial "icon/bxl-youtube.html" . }}
+        </a>
+        {{ end }}
+        {{ if or .Site.Params.x .Site.Params.twitter }}
+        <a href="{{ .Site.Params.x | default .Site.Params.twitter }}" target="_blank" rel="noopener noreferrer" class="hero-social-link social-x" aria-label="X" title="X">
+          {{ partial "icon/bxl-x.html" . }}
+        </a>
+        {{ end }}
+        {{ if .Site.Params.email }}
+        <a href="mailto:{{ .Site.Params.email }}" class="hero-social-link social-em" aria-label="Email" title="Email">
+          {{ partial "icon/bxs-envelope.html" . }}
+        </a>
+        {{ end }}
+      </div>
+    </div>
+  </div>
+
+  <h2 class="hero-subheading">
+    {{ .Site.Params.role }}
+    {{ with .Site.Params.hero_description }}
+    <span class="hero-subheading-tagline">
+      - {{ . }}
+    </span>
+    {{ end }}
+  </h2>
+</section>
+
+<!-- Projects Section -->
+{{ if and (ne .Site.Params.sections.projects false) (index hugo.Data "portfolio") hugo.Data.portfolio.projects }}
+<section id="projects" class="portfolio-section">
+  <div class="section-heading-row">
+    <h2 class="section-title">Projects</h2>
+    <a href="{{ "/projects/" | relLangURL }}" class="section-sublink">
+      <span>View All</span>
+      <span class="section-sublink-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="text-projects-list">
+    {{ range first 4 hugo.Data.portfolio.projects }}
+    <article class="text-project-entry">
+      <div class="text-project-header">
+        <div class="text-project-title-group">
+          {{ if .link }}
+          <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="text-project-title-link">
+            <h3 class="text-project-title">{{ .title }}</h3>
+          </a>
+          {{ else }}
+          <h3 class="text-project-title">{{ .title }}</h3>
+          {{ end }}
+          {{ if .featured }}
+          <span class="project-featured-badge">FEATURED</span>
+          {{ end }}
+          {{ with .role }}
+          <span class="text-project-role">· {{ . }}</span>
+          {{ end }}
+        </div>
+
+        {{ if .link }}
+        <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="text-project-link">
+          <span>{{ if strings.Contains .link "github.com" }}View Source{{ else }}Visit Site{{ end }}</span>
+          <span class="text-project-arrow">→</span>
+        </a>
+        {{ else }}
+        <span class="text-project-homelab">Self-Hosted</span>
+        {{ end }}
+      </div>
+
+      <p class="text-project-desc">{{ .description }}</p>
+
+      {{ with .tags }}
+      <div class="text-project-tags">
+        {{ range $i, $tag := . }}
+          {{ if $i }}<span class="text-project-tag-sep">·</span>{{ end }}
+          <span class="text-project-tag">{{ if (reflect.IsMap $tag) }}{{ $tag.name }}{{ else }}{{ $tag }}{{ end }}</span>
+        {{ end }}
+      </div>
+      {{ end }}
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+<!-- Experience Timeline -->
+{{ if and (ne .Site.Params.sections.experience false) (index hugo.Data "portfolio") hugo.Data.portfolio.experience }}
+<section id="experience" class="portfolio-section">
+  <div class="section-heading-row">
+    <h2 class="section-title">Experience</h2>
+    <a href="{{ "/experience/" | relLangURL }}" class="section-sublink">
+      <span>View Details</span>
+      <span class="section-sublink-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="tabular-list">
+    {{ range hugo.Data.portfolio.experience }}
+    <div class="tabular-item">
+      <div class="tabular-date">{{ .years }}</div>
+      <div>
+        <h3 class="tabular-title">{{ .title }}</h3>
+        <p class="tabular-subtitle">{{ .company }}</p>
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+<!-- Certifications & Credentials -->
+{{ if and (ne .Site.Params.sections.credentials false) (index hugo.Data "portfolio") hugo.Data.portfolio.credentials }}
+<section id="credentials" class="portfolio-section">
+  <div class="section-heading-row">
+    <h2 class="section-title">Certifications</h2>
+    <a href="{{ "/certifications/" | relLangURL }}" class="section-sublink">
+      <span>View All</span>
+      <span class="section-sublink-arrow">→</span>
+    </a>
+  </div>
+
+  <div class="tabular-list">
+    {{ range hugo.Data.portfolio.credentials }}
+    <div class="tabular-item">
+      <div class="tabular-date">{{ .years }}</div>
+      <div>
+        <h3 class="tabular-title">{{ .title }}</h3>
+        <p class="tabular-subtitle">{{ .institution }}</p>
+        {{ if .link }}
+        <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="credential-link-pill">
+          <span>Verify Credential</span>
+          {{ partial "icon/bx-link-external.html" . }}
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+<!-- GitHub Activity Section -->
+{{ if and (ne .Site.Params.sections.github_activity false) (index hugo.Data "github_contributions") hugo.Data.github_contributions.weeks }}
+<section id="github-activity" class="portfolio-section">
+  <div class="section-heading-row">
+    <h2 class="section-title">GitHub Activity</h2>
+  </div>
+
+  <div class="card-dashed github-activity-card">
+    <div class="github-svg-wrap">
+      <svg
+        viewBox="0 0 728 104"
+        class="github-svg-heatmap"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="GitHub Contributions Heatmap"
+      >
+        <!-- Month labels -->
+        {{- range $colIndex, $m := hugo.Data.github_contributions.months -}}
+          {{- if $m.name -}}
+            <text x="{{ mul $colIndex 13.5 }}" y="9" class="gh-month-text" dominant-baseline="hanging">{{ $m.name }}</text>
+          {{- end -}}
+        {{- end -}}
+
+        <!-- Day cells -->
+        {{- range $colIndex, $week := hugo.Data.github_contributions.weeks -}}
+          {{- $x := mul $colIndex 13.5 -}}
+          {{- range $rowIndex, $day := $week -}}
+            {{- $y := add 20 (mul $rowIndex 12) -}}
+            {{- if $day -}}
+              <rect x="{{ $x }}" y="{{ $y }}" width="10" height="10" rx="2" class="gh-cell gh-level-{{ $day.level }}"><title>{{ $day.count }} contribution{{ if ne $day.count 1 }}s{{ end }} on {{ $day.date }}</title></rect>
+            {{- else -}}
+              <rect x="{{ $x }}" y="{{ $y }}" width="10" height="10" rx="2" class="gh-cell gh-level-0 gh-cell-empty"/>
+            {{- end -}}
+          {{- end -}}
+        {{- end -}}
+      </svg>
+    </div>
+    <script>
+      (function() {
+        var s = document.currentScript.previousElementSibling;
+        function scrollToRecent() {
+          if (s && s.scrollWidth > s.clientWidth) {
+            s.scrollLeft = s.scrollWidth;
+          }
+        }
+        scrollToRecent();
+        window.addEventListener('load', scrollToRecent, { once: true });
+      })();
+    </script>
+
+    <div class="github-footer">
+      <div id="github-total-text" class="github-total-text"><strong>{{ hugo.Data.github_contributions.total }}</strong> contributions in the last year</div>
+      <div class="github-legend">
+        <span>Less</span>
+        <span class="legend-box gh-level-0"></span>
+        <span class="legend-box gh-level-1"></span>
+        <span class="legend-box gh-level-2"></span>
+        <span class="legend-box gh-level-3"></span>
+        <span class="legend-box gh-level-4"></span>
+        <span>More</span>
+      </div>
+    </div>
+  </div>
+</section>
+{{ end }}
+
+<!-- Writing Section -->
+{{ if and (ne .Site.Params.sections.writing false) (index hugo.Data "articles") hugo.Data.articles }}
+<section id="writing" class="portfolio-section">
+  <div class="section-heading-row">
+    <h2 class="section-title">Writing</h2>
+    {{ with .Site.Params.medium }}
+    <a href="{{ . }}" target="_blank" rel="noopener noreferrer" class="section-sublink">
+      <span>Medium Profile</span>
+      <span class="section-sublink-arrow">→</span>
+    </a>
+    {{ end }}
+  </div>
+
+  <div class="writing-list">
+    {{ range hugo.Data.articles }}
+    <article class="writing-entry">
+      <div class="writing-header">
+        <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="writing-title-link">
+          <h3 class="writing-title">{{ .title }}</h3>
+        </a>
+        <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="writing-read-link">
+          <span>Read</span>
+          <span class="writing-arrow">→</span>
+        </a>
+      </div>
+
+      <p class="writing-snippet">{{ .snippet }}</p>
+
+      <div class="writing-meta">
+        <time class="writing-date">{{ .date }}</time>
+        {{ with .readTime }}
+        <span class="writing-meta-sep">·</span>
+        <span class="writing-read-time">{{ . }}</span>
+        {{ end }}
+        {{ with .category }}
+        <span class="writing-meta-sep">·</span>
+        <span class="writing-category">{{ . }}</span>
+        {{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+<!-- Contact Section -->
+{{ if ne .Site.Params.sections.contact false }}
+<section id="contact" class="portfolio-section">
+  <div class="section-heading-row">
+    <h2 class="section-title">{{ .Site.Params.contact_heading | default "Let's work together." }}</h2>
+  </div>
+
+  <div class="contact-actions-list">
+    {{ if .Site.Params.email }}
+    <div class="contact-email-wrapper">
+      <a href="mailto:{{ .Site.Params.email }}" class="contact-action-card">
+        <div class="contact-action-left">
+          <div class="contact-action-icon">
+            {{ partial "icon/contact-email.html" . }}
+          </div>
+          <div>
+            <div class="contact-action-label">DIRECT EMAIL</div>
+            <div class="contact-action-value">{{ .Site.Params.email }}</div>
+          </div>
+        </div>
+        <span class="contact-action-arrow">→</span>
+      </a>
+
+      <!-- Sticky Note Annotation -->
+      {{ if ne .Site.Params.contact_annotation false }}
+      <aside class="contact-sticky-note" aria-hidden="true">
+        {{ partial "doodle-pointer.html" . }}
+      </aside>
+      {{ end }}
+    </div>
+    {{ end }}
+
+    {{ if .Site.Params.linkedin }}
+    <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener noreferrer" class="contact-action-card">
+      <div class="contact-action-left">
+        <div class="contact-action-icon">
+          {{ partial "icon/contact-linkedin.html" . }}
+        </div>
+        <div>
+          <div class="contact-action-label">CONNECT ON LINKEDIN</div>
+          <div class="contact-action-value">{{ .Site.Params.linkedin_name | default .Site.Params.author }}</div>
+        </div>
+      </div>
+      <span class="contact-action-arrow">→</span>
+    </a>
+    {{ end }}
+  </div>
+</section>
+{{ end }}
+
+{{ end }}

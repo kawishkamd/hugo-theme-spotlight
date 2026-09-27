@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Essential Self-Hosted Services for Your Homelab",
+    "link": "https://example.com/articles/homelab-services",
+    "date": "Aug 2026",
+    "readTime": "8 min read",
+    "category": "Self-Hosting",
+    "snippet": "A comprehensive walkthrough of reliable Docker-based homelab applications worth self-hosting for daily workflows and privacy."
+  },
+  {
+    "title": "Hardening Remote Linux Servers: A Practical Guide",
+    "link": "https://example.com/articles/linux-server-hardening",
+    "date": "Jul 2026",
+    "readTime": "12 min read",
+    "category": "Security",
+    "snippet": "Step-by-step checklist to secure bare-metal and cloud VPS servers using SSH keys, UFW firewalls, Fail2ban, and automated patch management."
+  },
+  {
+    "title": "Automating Repetitive Tasks with Bash and Python",
+    "link": "https://example.com/articles/bash-python-automation",
+    "date": "Jun 2026",
+    "readTime": "6 min read",
+    "category": "Automation",
+    "snippet": "How to combine the speed of shell scripting with Python's rich standard library to build robust, maintainable system tools."
+  }
+]

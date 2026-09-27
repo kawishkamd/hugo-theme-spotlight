@@ -1,0 +1,15 @@
+# Hugo output directories
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Example site outputs
+exampleSite/public/
+exampleSite/resources/
+exampleSite/.hugo_build.lock
+
+# OS and Editor files
+.DS_Store
+*.log
+.vscode/
+.idea/

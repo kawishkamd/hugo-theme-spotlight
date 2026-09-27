@@ -1,0 +1,57 @@
+{{ define "main" }}
+<div class="dedicated-page-wrapper">
+  <!-- Header -->
+  <div class="dedicated-page-header">
+    <a href="{{ "/" | relLangURL }}" class="dedicated-back-link">
+      <svg class="back-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <span>Back to Home</span>
+    </a>
+
+    <h1 class="dedicated-page-title">Selected Projects</h1>
+    <p class="dedicated-page-desc">{{ .Params.description | default .Description }}</p>
+  </div>
+
+  <!-- Projects List (Text-Only) -->
+  <div class="text-projects-list">
+    {{ range hugo.Data.portfolio.projects }}
+    <article class="text-project-entry">
+      <div class="text-project-header">
+        <div class="text-project-title-group">
+          {{ if .link }}
+          <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="text-project-title-link">
+            <h2 class="text-project-title">{{ .title }}</h2>
+          </a>
+          {{ else }}
+          <h2 class="text-project-title">{{ .title }}</h2>
+          {{ end }}
+          {{ if .featured }}
+          <span class="project-featured-badge">FEATURED</span>
+          {{ end }}
+          <span class="text-project-role">· {{ .role }}</span>
+        </div>
+
+        {{ if .link }}
+        <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="text-project-link">
+          <span>{{ if strings.Contains .link "github.com" }}View Source{{ else }}Visit Site{{ end }}</span>
+          <span class="text-project-arrow">→</span>
+        </a>
+        {{ else }}
+        <span class="text-project-homelab">Homelab Service</span>
+        {{ end }}
+      </div>
+
+      <p class="text-project-desc">{{ .description }}</p>
+
+      <div class="text-project-tags">
+        {{ range $i, $tag := .tags }}
+          {{ if $i }}<span class="text-project-tag-sep">·</span>{{ end }}
+          <span class="text-project-tag">{{ if (reflect.IsMap $tag) }}{{ $tag.name }}{{ else }}{{ $tag }}{{ end }}</span>
+        {{ end }}
+      </div>
+    </article>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

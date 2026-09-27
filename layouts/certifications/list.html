@@ -1,0 +1,35 @@
+{{ define "main" }}
+<div class="dedicated-page-wrapper">
+  <!-- Header -->
+  <div class="dedicated-page-header">
+    <a href="{{ "/" | relLangURL }}" class="dedicated-back-link">
+      <svg class="back-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="15 18 9 12 15 6"></polyline>
+      </svg>
+      <span>Back to Home</span>
+    </a>
+
+    <h1 class="dedicated-page-title">Certifications</h1>
+    <p class="dedicated-page-desc">{{ .Params.description | default .Description }}</p>
+  </div>
+
+  <!-- Certifications List -->
+  <div class="tabular-list">
+    {{ range hugo.Data.portfolio.credentials }}
+    <div class="tabular-item">
+      <div class="tabular-date">{{ .years }}</div>
+      <div>
+        <h2 class="tabular-title">{{ .title }}</h2>
+        <p class="tabular-subtitle">{{ .institution }}</p>
+        {{ if .link }}
+        <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="credential-link-pill">
+          <span>Verify Credential</span>
+          {{ partial "icon/bx-link-external.html" . }}
+        </a>
+        {{ end }}
+      </div>
+    </div>
+    {{ end }}
+  </div>
+</div>
+{{ end }}

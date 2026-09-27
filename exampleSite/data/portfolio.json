@@ -1,0 +1,107 @@
+{
+  "projects": [
+    {
+      "title": "Cloud Instance Automator",
+      "role": "Cloud Automation",
+      "description": "Automated CLI toolkit managing cloud infrastructure provisioning and continuous API monitoring with instant alerting.",
+      "featured": true,
+      "tags": [
+        { "name": "Python" },
+        { "name": "REST API" },
+        { "name": "Automation" },
+        { "name": "Linux" }
+      ],
+      "link": "https://github.com/example/cloud-automator"
+    },
+    {
+      "title": "Config Guard Daemon",
+      "role": "Systems Utility",
+      "description": "Background service to monitor file integrity, lock configuration states, and enforce drift prevention across nodes.",
+      "tags": [
+        { "name": "Go" },
+        { "name": "Bash" },
+        { "name": "Linux" }
+      ],
+      "link": "https://github.com/example/config-guard"
+    },
+    {
+      "title": "Log Stream Parser",
+      "role": "Backend & Observability",
+      "description": "High-throughput log scraper processing structured event metrics and pushing alerts to messaging channels with SQLite buffering.",
+      "tags": [
+        { "name": "Python" },
+        { "name": "SQLite" },
+        { "name": "Cron" }
+      ],
+      "link": "https://github.com/example/log-parser"
+    },
+    {
+      "title": "Network Diagnostics Toolkit",
+      "role": "Networking & CLI",
+      "description": "Command-line suite for automated interface analysis, route latency tracking, and packet capture diagnostics.",
+      "tags": [
+        { "name": "Bash" },
+        { "name": "Networking" },
+        { "name": "Linux" }
+      ],
+      "link": "https://github.com/example/network-tools"
+    },
+    {
+      "title": "Self-Hosted Media Cluster",
+      "role": "Homelab Infrastructure",
+      "description": "Automated Docker Compose orchestration powering containerized services, storage volumes, and reverse proxies.",
+      "tags": [
+        { "name": "Docker" },
+        { "name": "Nginx" },
+        { "name": "Storage" }
+      ]
+    },
+    {
+      "title": "Edge Web Utilities",
+      "role": "Full-Stack Web App",
+      "description": "Curated developer productivity utilities deployed to modern serverless edge infrastructure with instant responses.",
+      "tags": [
+        { "name": "TypeScript" },
+        { "name": "React" },
+        { "name": "Serverless" }
+      ],
+      "link": "https://example.com"
+    }
+  ],
+  "credentials": [
+    {
+      "title": "Cisco Certified Network Associate (CCNA)",
+      "institution": "Cisco (Enterprise Networking, Security & Automation)",
+      "years": "2024 - Present",
+      "link": "https://www.credly.com"
+    },
+    {
+      "title": "AWS Certified Solutions Architect",
+      "institution": "Amazon Web Services",
+      "years": "2024",
+      "link": "https://aws.amazon.com/certification/"
+    }
+  ],
+  "experience": [
+    {
+      "title": "Systems & DevOps Engineer",
+      "company": "Tech Solutions Inc.",
+      "years": "2023 - Present",
+      "bullets": [
+        "Architected containerized microservices and automated deployment pipelines using Docker Compose and GitHub Actions.",
+        "Configured secure reverse proxies (Nginx/Caddy) with automated TLS certificates and DNS load balancing.",
+        "Maintained 99.9% availability across production Linux clusters and automated off-site backups."
+      ]
+    },
+    {
+      "title": "Systems Administrator",
+      "company": "Enterprise Cloud Systems",
+      "years": "2021 - 2023",
+      "bullets": [
+        "Managed physical rackmount hardware, switch configurations, VLAN routing, and firewall rules.",
+        "Authored custom Bash and Python automation scripts for scheduled system health audits.",
+        "Spearheaded OS migration and hardened SSH/firewall configurations across 50+ instances."
+      ]
+    }
+  ]
+}

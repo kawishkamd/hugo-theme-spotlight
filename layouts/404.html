@@ -1,0 +1,30 @@
+{{ define "main" }}
+<div class="dedicated-page-wrapper error-page-wrapper">
+  <div class="card-dashed error-card">
+    <div class="error-status-badge">
+      <span class="error-status-dot"></span>
+      <span class="error-status-code">404</span>
+      <span class="error-status-sep">·</span>
+      <span class="error-status-label">NOT FOUND</span>
+    </div>
+
+    <h1 class="error-title">Page Not Found</h1>
+
+    <p class="error-desc">
+      The requested route or resource does not exist, was relocated, or is temporarily offline.
+    </p>
+
+    <div class="error-cta-row">
+      <a href="{{ "/" | relLangURL }}" class="section-sublink">
+        <span class="section-sublink-arrow">←</span>
+        <span>Return Home</span>
+      </a>
+      <span class="text-project-tag-sep">·</span>
+      <a href="{{ "/projects/" | relLangURL }}" class="section-sublink">
+        <span>Explore Projects</span>
+        <span class="section-sublink-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</div>
+{{ end }}
