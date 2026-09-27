@@ -6,6 +6,8 @@ Zero external runtime dependencies. Zero npm packages. 100% Google Lighthouse sc
 
 ![Spotlight Screenshot](images/screenshot.png)
 
+[📖 **Full User Guide & Documentation**](docs/DOCUMENTATION.md) • [⚙️ **Configuration Reference**](exampleSite/hugo.yaml) • [🚀 **Live Demo**](https://kawishkamd.github.io)
+
 ---
 
 ## ✨ Features

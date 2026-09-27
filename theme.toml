@@ -1,10 +1,36 @@
+# ==============================================================================
+# Hugo Spotlight Theme Metadata Specification
+# ==============================================================================
+# Used by GoHugo official theme directory (themes.gohugo.io) and theme consumers.
+# ==============================================================================
+
+# Unique identifier for the theme (used in theme = 'spotlight')
 name = "spotlight"
+
+# Open source license
 license = "MIT"
 licenselink = "https://github.com/kawishkamd/hugo-theme-spotlight/blob/main/LICENSE"
+
+# Short summary displayed on theme directory listing cards
 description = "A modern spotlight-driven, zero-dependency portfolio theme for software engineers and developers."
+
+# Canonical repository and official live demo showcase
 homepage = "https://github.com/kawishkamd/hugo-theme-spotlight"
 demosite = "https://kawishkamd.github.io"
-tags = ["portfolio", "software-engineer", "spotlight", "minimal", "dark-mode", "clean", "responsive", "developer"]
+
+# Search tags for theme directory categorization
+tags = [
+  "portfolio",
+  "software-engineer",
+  "spotlight",
+  "minimal",
+  "dark-mode",
+  "clean",
+  "responsive",
+  "developer"
+]
+
+# Highlighted capabilities listed on themes.gohugo.io
 features = [
   "Zero dependencies (no Node, npm, Tailwind, or Webpack)",
   "Interactive cursor spotlight cards",
@@ -15,8 +41,11 @@ features = [
   "Fully variable-ready YAML/TOML configuration",
   "100% responsive and accessible"
 ]
+
+# Minimum required GoHugo engine version
 min_version = "0.120.0"
 
+# Creator attribution
 [author]
   name = "Kawishka Dahanayaka"
   homepage = "https://kawishkamd.github.io"
