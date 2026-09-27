@@ -1,18 +1,59 @@
+# ==============================================================================
+# Hugo Spotlight Theme — Site Configuration Reference
+# ==============================================================================
+# This configuration file is 100% "variable-ready". Every single section, link,
+# image, and bio snippet on your site can be customized here without editing HTML.
+#
+# Supported file formats: hugo.yaml (recommended) or hugo.toml
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# 1. Base Hugo Engine Settings
+# ------------------------------------------------------------------------------
+# The canonical public URL where your website will be hosted.
+# Example: 'https://alexrivera.dev/' or 'https://yourname.github.io/'
 baseURL: 'https://example.com/'
+
+# Language locale code (used for HTML lang attribute and OpenGraph metadata)
 locale: 'en-us'
-disableKinds: ["taxonomy", "term"]
+
+# Title displayed in the browser tab and search engine results
 title: 'Alex Rivera | Software Engineer'
+
+# Automatically generates a clean, crawler-friendly robots.txt file
 enableRobotsTXT: true
+
+# Enables rendering of content pages with future publish dates (optional)
 buildFuture: true
+
+# Disables Hugo's default tag/category taxonomy pages if not using them,
+# keeping your build lightning-fast (<50ms).
+disableKinds: ["taxonomy", "term"]
+
+# Active theme folder name inside your site's 'themes/' directory
 theme: 'spotlight'
 
+# ------------------------------------------------------------------------------
+# 2. Personal Identity & Hero Banner
+# ------------------------------------------------------------------------------
 params:
-  # Identity & Header
+  # Your full display name (appears in the hero heading, footer, and meta tags)
   author: "Alex Rivera"
+
+  # Short brand text or monogram displayed in the top navbar (e.g. "AR", "KD")
   brand_text: "AR"
+
+  # Professional title or specialization displayed directly beneath your name
   role: "Software Engineer"
+
+  # A concise 1-sentence headline summarizing your focus (used in hero & SEO)
   hero_description: "Building scalable web applications, distributed systems, and modern developer tooling."
+
+  # Lead introduction sentence preceding the tech skill pills
   hero_bio: "I craft clean code, design robust backend microservices, and build modern reactive interfaces - powered by"
+
+  # Highlighted core technologies rendered as interactive pill badges in the bio.
+  # The last item automatically receives an Oxford 'and' prefix.
   hero_chips:
     - "TypeScript"
     - "Go"
@@ -20,40 +61,84 @@ params:
     - "Python"
     - "PostgreSQL"
     - "Docker"
+
+  # Short site description for search engines, LinkedIn, Twitter, and Discord
   site_description: "Portfolio of Alex Rivera, a Software Engineer sharing full-stack projects, distributed systems, and developer tools."
-  site_image: "/img/share.jpg"
+
+  # Path to your profile picture (stored in static/img/avatar.webp)
   avatar: "/img/avatar.webp"
+
+  # 1200x630px preview image for social cards (stored in static/img/share.jpg)
+  site_image: "/img/share.jpg"
+
+  # Displays an official verified checkmark badge beside your name (true / false)
   verified_badge: true
 
-  # SEO & Verification (Optional)
-  # google_site_verification: "your-code-here"
+  # ----------------------------------------------------------------------------
+  # 3. SEO & Webmaster Verification (Optional)
+  # ----------------------------------------------------------------------------
+  # Google Search Console HTML verification meta tag content
+  # google_site_verification: "your-google-verification-code-here"
+
+  # Google Analytics 4 Measurement ID (e.g., "G-XXXXXXXXXX")
   # google_analytics: "G-XXXXXXXXXX"
 
-  # Social Links
+  # ----------------------------------------------------------------------------
+  # 4. Social & Communication Profiles
+  # ----------------------------------------------------------------------------
+  # Leave any profile blank or comment it out to automatically hide its icon.
   github: "https://github.com/example"
   linkedin: "https://linkedin.com/in/example"
-  linkedin_name: "Alex Rivera"
-  x: "https://x.com/example"
-  email: "alex@example.com"
+  linkedin_name: "Alex Rivera"       # Name or handle displayed on the LinkedIn contact card
+  x: "https://x.com/example"         # X (formerly Twitter) profile URL
+  # youtube: "https://youtube.com/@example" # YouTube channel URL (optional)
+  email: "alex@example.com"          # Direct contact email (used for contact card & mailto)
 
-  # Modular Section Toggles (set to false to hide any section)
+  # ----------------------------------------------------------------------------
+  # 5. Modular Section Toggles
+  # ----------------------------------------------------------------------------
+  # Toggle individual homepage sections ON (true) or OFF (false).
+  # If set to false, Hugo completely removes the HTML from the compiled build.
   sections:
+    # Large horizontal showcase card highlighting your single best project
     spotlight: true
+
+    # 2-column grid displaying up to 4 featured projects with thumbnails
     projects: true
+
+    # Chronological work history and career experience timeline
     experience: true
+
+    # Continuous animated infinite-scroll marquee ticker of your skills
     tech_stack: true
+
+    # Professional certifications and licenses listing
     credentials: true
+
+    # Interactive 52-week SVG GitHub contribution activity calendar
     github_activity: true
+
+    # Quick action contact cards (Email + LinkedIn) at the bottom
     contact: true
 
-  # Contact
+  # ----------------------------------------------------------------------------
+  # 6. Contact Section Text
+  # ----------------------------------------------------------------------------
   contact_heading: "Let's work together."
   contact_bio: "Available for full-stack engineering roles, distributed systems consulting, and technical architecture. Open to discuss web performance, backend scalability, and open-source tooling."
 
-  # Footer
+  # ----------------------------------------------------------------------------
+  # 7. Footer
+  # ----------------------------------------------------------------------------
+  # Personal signature motto or quote displayed beneath copyright in the footer
   footer_quote: "Writing clean code. Shipping reliable systems."
 
-# Navigation Menu (Optional)
+# ------------------------------------------------------------------------------
+# 8. Navigation Menu (Optional)
+# ------------------------------------------------------------------------------
+# Defines custom links in the header navbar.
+# If omitted or commented out, the theme automatically provides smart in-page
+# anchor links to: #projects, #experience, #github-activity, and #contact.
 menus:
   main:
     - name: "Projects"
