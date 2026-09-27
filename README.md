@@ -6,7 +6,7 @@ Zero external runtime dependencies. Zero npm packages. 100% Google Lighthouse sc
 
 ![Spotlight Screenshot](images/screenshot.png)
 
-[📖 **Full User Guide & Documentation**](docs/DOCUMENTATION.md) • [⚙️ **Configuration Reference**](exampleSite/hugo.yaml) • [🚀 **Live Demo**](https://kawishkamd.github.io)
+[📖 **Full User Guide & Documentation**](docs/DOCUMENTATION.md) • [⚙️ **Configuration Reference**](exampleSite/hugo.yaml) • [🚀 **Live Demo**](https://kawishkamd.github.io/hugo-theme-spotlight/)
 
 ---
 
@@ -35,17 +35,17 @@ git init
 ### 2. Install the Theme
 Add Spotlight as a Git submodule:
 ```bash
-git submodule add https://github.com/kawishkamd/hugo-theme-spotlight.git themes/spotlight
+git submodule add https://github.com/kawishkamd/hugo-theme-spotlight.git themes/hugo-theme-spotlight
 ```
 
 ### 3. Copy Example Site Data (Recommended)
 Get started immediately by copying the demo content and configuration:
 ```bash
-cp -r themes/spotlight/exampleSite/* .
+cp -r themes/hugo-theme-spotlight/exampleSite/* .
 rm hugo.toml   # Hugo uses the copied hugo.yaml
 ```
 
-*(Note: Even without copying `exampleSite`, Spotlight ships with built-in demo data, so setting `theme = "spotlight"` in your `hugo.toml` works immediately!)*
+*(Note: Even without copying `exampleSite`, Spotlight ships with built-in demo data, so setting `theme = "hugo-theme-spotlight"` in your `hugo.toml` works immediately!)*
 
 ### 4. Run the Development Server
 ```bash
@@ -63,7 +63,7 @@ Spotlight is 100% "variable-ready". Customize everything inside your `hugo.yaml`
 baseURL: 'https://example.com/'
 locale: 'en-us'
 title: 'Alex Rivera | Software Engineer'
-theme: 'spotlight'
+theme: 'hugo-theme-spotlight'
 
 params:
   # Identity & Header
@@ -128,7 +128,7 @@ menus:
 Spotlight includes a zero-dependency Python script to scrape your live GitHub contribution graph and output the exact JSON structure:
 
 ```bash
-python themes/spotlight/tools/fetch_contributions.py <your-github-username> data/github_contributions.json
+python themes/hugo-theme-spotlight/tools/fetch_contributions.py <your-github-username> data/github_contributions.json
 ```
 
 You can automate this in your CI/CD pipeline (e.g. GitHub Actions) to refresh your heatmap weekly or on every deployment!

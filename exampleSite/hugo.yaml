@@ -31,7 +31,7 @@ buildFuture: true
 disableKinds: ["taxonomy", "term"]
 
 # Active theme folder name inside your site's 'themes/' directory
-theme: 'spotlight'
+theme: 'hugo-theme-spotlight'
 
 # ------------------------------------------------------------------------------
 # 2. Personal Identity & Hero Banner

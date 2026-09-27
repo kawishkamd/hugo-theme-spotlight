@@ -4,8 +4,8 @@
 # Used by GoHugo official theme directory (themes.gohugo.io) and theme consumers.
 # ==============================================================================
 
-# Unique identifier for the theme (used in theme = 'spotlight')
-name = "spotlight"
+# Unique identifier for the theme (used in theme = 'hugo-theme-spotlight')
+name = "hugo-theme-spotlight"
 
 # Open source license
 license = "MIT"
@@ -16,7 +16,7 @@ description = "A modern spotlight-driven, zero-dependency portfolio theme for so
 
 # Canonical repository and official live demo showcase
 homepage = "https://github.com/kawishkamd/hugo-theme-spotlight"
-demosite = "https://kawishkamd.github.io"
+demosite = "https://kawishkamd.github.io/hugo-theme-spotlight/"
 
 # Search tags for theme directory categorization
 tags = [

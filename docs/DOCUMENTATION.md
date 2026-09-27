@@ -47,10 +47,10 @@ cd my-portfolio
 git init
 
 # 2. Add Spotlight as a Git submodule
-git submodule add https://github.com/kawishkamd/hugo-theme-spotlight.git themes/spotlight
+git submodule add https://github.com/kawishkamd/hugo-theme-spotlight.git themes/hugo-theme-spotlight
 
 # 3. Copy example configuration and demo assets
-cp -r themes/spotlight/exampleSite/* .
+cp -r themes/hugo-theme-spotlight/exampleSite/* .
 rm -f hugo.toml   # Hugo will use the copied hugo.yaml
 
 # 4. Start local development server
@@ -64,8 +64,8 @@ Spotlight ships with built-in default data. You can test it immediately without 
 ```bash
 hugo new site my-portfolio
 cd my-portfolio
-git submodule add https://github.com/kawishkamd/hugo-theme-spotlight.git themes/spotlight
-echo 'theme = "spotlight"' >> hugo.toml
+git submodule add https://github.com/kawishkamd/hugo-theme-spotlight.git themes/hugo-theme-spotlight
+echo 'theme = "hugo-theme-spotlight"' >> hugo.toml
 hugo server -D
 ```
 
@@ -113,7 +113,7 @@ title: 'Alex Rivera | Software Engineer' # Browser title fallback
 enableRobotsTXT: true                 # Generates robots.txt
 buildFuture: true                     # Render future-dated articles
 disableKinds: ["taxonomy", "term"]    # Disables unused Hugo tags/categories
-theme: 'spotlight'                    # Name of theme folder in themes/
+theme: 'hugo-theme-spotlight'          # Name of theme folder in themes/
 
 params:
   # --- Identity & Hero Section ---
@@ -257,7 +257,7 @@ Place all personal media inside `static/img/` in your site root:
 The theme includes a standalone Python 3 script to pull your live GitHub contribution graph without relying on third-party iframe widgets:
 
 ```bash
-python themes/spotlight/tools/fetch_contributions.py <your-github-username> data/github_contributions.json
+python themes/hugo-theme-spotlight/tools/fetch_contributions.py <your-github-username> data/github_contributions.json
 ```
 
 ### Automated GitHub Actions Workflow
@@ -282,7 +282,7 @@ jobs:
           python-version: '3.11'
       - name: Fetch Contributions
         run: |
-          python themes/spotlight/tools/fetch_contributions.py ${{ github.repository_owner }} data/github_contributions.json
+          python themes/hugo-theme-spotlight/tools/fetch_contributions.py ${{ github.repository_owner }} data/github_contributions.json
       - name: Commit & Push if changed
         run: |
           git config user.name "github-actions[bot]"
@@ -311,7 +311,7 @@ To override theme colors or styles, create `assets/css/custom.css` in your site 
 ```
 
 ### Template Overrides
-- To change the footer: Copy `themes/spotlight/layouts/_default/baseof.html` to `layouts/_default/baseof.html` in your site.
+- To change the footer: Copy `themes/hugo-theme-spotlight/layouts/_default/baseof.html` to `layouts/_default/baseof.html` in your site.
 - To customize icon partials: Place your custom SVG inside `layouts/partials/icon/`.
 
 ---
@@ -376,10 +376,10 @@ jobs:
 ## 10. Troubleshooting & FAQ
 
 #### Q: My site renders blank when I run `hugo server`.
-**Fix:** Verify that `theme: 'spotlight'` matches the directory name under `themes/` (e.g. `themes/spotlight`). Also ensure you removed default boilerplate `content/_index.md` files if they contain `draft: true`.
+**Fix:** Verify that `theme: 'hugo-theme-spotlight'` matches the directory name under `themes/` (e.g. `themes/hugo-theme-spotlight`). Also ensure you removed default boilerplate `content/_index.md` files if they contain `draft: true`.
 
 #### Q: The GitHub Heatmap is empty or missing.
-**Fix:** Either copy `exampleSite/data/github_contributions.json` or generate one with `python themes/spotlight/tools/fetch_contributions.py <your-username> data/github_contributions.json`.
+**Fix:** Either copy `exampleSite/data/github_contributions.json` or generate one with `python themes/hugo-theme-spotlight/tools/fetch_contributions.py <your-username> data/github_contributions.json`.
 
 #### Q: My images show a 404 or broken icon.
 **Fix:** In Hugo, static images placed in `static/img/avatar.webp` must be referenced starting with a leading slash: `/img/avatar.webp`, NOT `static/img/avatar.webp`.

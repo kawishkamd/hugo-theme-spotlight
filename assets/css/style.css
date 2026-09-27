@@ -483,7 +483,7 @@ html.dark-mode .hero-social-link.social-gh:hover { color: #ffffff; }
   color: var(--text-primary);
   vertical-align: middle;
   margin-left: 0.25rem;
-  margin-right: 0.25rem;
+  margin-right: 0.05rem;
   white-space: nowrap;
 }
 
