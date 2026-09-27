@@ -1,107 +1,166 @@
 {
-  "projects": [
+  "spotlight": {
+    "category": "FEATURED DISTRIBUTED SYSTEM",
+    "title": "DevPulse Orchestrator",
+    "role": "Lead Systems Architect",
+    "description": "High-throughput distributed workflow engine that automates developer environment provisioning, task queue scheduling, and real-time telemetry across cloud clusters.",
+    "tags": [
+      { "name": "Go" },
+      { "name": "TypeScript" },
+      { "name": "Redis" },
+      { "name": "gRPC" },
+      { "name": "Docker" }
+    ],
+    "image": "/img/project_devpulse.webp",
+    "link": "https://github.com/example/devpulse-orchestrator",
+    "button_text": "View Repository"
+  },
+  "tags": [
     {
-      "title": "Cloud Instance Automator",
-      "role": "Cloud Automation",
-      "description": "Automated CLI toolkit managing cloud infrastructure provisioning and continuous API monitoring with instant alerting.",
-      "featured": true,
-      "tags": [
-        { "name": "Python" },
-        { "name": "REST API" },
-        { "name": "Automation" },
-        { "name": "Linux" }
-      ],
-      "link": "https://github.com/example/cloud-automator"
-    },
-    {
-      "title": "Config Guard Daemon",
-      "role": "Systems Utility",
-      "description": "Background service to monitor file integrity, lock configuration states, and enforce drift prevention across nodes.",
-      "tags": [
-        { "name": "Go" },
-        { "name": "Bash" },
-        { "name": "Linux" }
-      ],
-      "link": "https://github.com/example/config-guard"
-    },
-    {
-      "title": "Log Stream Parser",
-      "role": "Backend & Observability",
-      "description": "High-throughput log scraper processing structured event metrics and pushing alerts to messaging channels with SQLite buffering.",
-      "tags": [
-        { "name": "Python" },
-        { "name": "SQLite" },
-        { "name": "Cron" }
-      ],
-      "link": "https://github.com/example/log-parser"
-    },
-    {
-      "title": "Network Diagnostics Toolkit",
-      "role": "Networking & CLI",
-      "description": "Command-line suite for automated interface analysis, route latency tracking, and packet capture diagnostics.",
-      "tags": [
-        { "name": "Bash" },
-        { "name": "Networking" },
-        { "name": "Linux" }
-      ],
-      "link": "https://github.com/example/network-tools"
-    },
-    {
-      "title": "Self-Hosted Media Cluster",
-      "role": "Homelab Infrastructure",
-      "description": "Automated Docker Compose orchestration powering containerized services, storage volumes, and reverse proxies.",
-      "tags": [
-        { "name": "Docker" },
-        { "name": "Nginx" },
-        { "name": "Storage" }
+      "category": "Frontend",
+      "items": [
+        "TypeScript",
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "HTML5/CSS3"
       ]
     },
     {
-      "title": "Edge Web Utilities",
-      "role": "Full-Stack Web App",
-      "description": "Curated developer productivity utilities deployed to modern serverless edge infrastructure with instant responses.",
+      "category": "Backend & Systems",
+      "items": [
+        "Go",
+        "Python",
+        "Node.js",
+        "REST APIs",
+        "GraphQL",
+        "gRPC"
+      ]
+    },
+    {
+      "category": "Databases & Storage",
+      "items": [
+        "PostgreSQL",
+        "Redis",
+        "SQLite",
+        "MongoDB"
+      ]
+    },
+    {
+      "category": "DevOps & Tooling",
+      "items": [
+        "Docker",
+        "Kubernetes",
+        "AWS",
+        "Linux",
+        "Git",
+        "CI/CD"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "EventStream Broker",
+      "role": "Backend & Distributed Systems",
+      "description": "Lightweight pub-sub message broker with sub-millisecond latency, zero external database dependencies, and SQLite WAL persistence.",
+      "tags": [
+        { "name": "Go" },
+        { "name": "WebSockets" },
+        { "name": "SQLite" },
+        { "name": "Concurrency" }
+      ],
+      "image": "/img/project_eventstream.webp",
+      "link": "https://github.com/example/eventstream-broker"
+    },
+    {
+      "title": "CollabCanvas Studio",
+      "role": "Frontend & Real-Time",
+      "description": "Real-time multi-user collaborative whiteboard powered by CRDT algorithms, WebRTC peer data mesh, and hardware-accelerated canvas rendering.",
       "tags": [
         { "name": "TypeScript" },
         { "name": "React" },
-        { "name": "Serverless" }
+        { "name": "Node.js" },
+        { "name": "CRDT" }
       ],
-      "link": "https://example.com"
-    }
-  ],
-  "credentials": [
-    {
-      "title": "Cisco Certified Network Associate (CCNA)",
-      "institution": "Cisco (Enterprise Networking, Security & Automation)",
-      "years": "2024 - Present",
-      "link": "https://www.credly.com"
+      "image": "/img/project_collabcanvas.webp",
+      "link": "https://github.com/example/collab-canvas"
     },
     {
-      "title": "AWS Certified Solutions Architect",
-      "institution": "Amazon Web Services",
-      "years": "2024",
-      "link": "https://aws.amazon.com/certification/"
+      "title": "CodeLint Language Server",
+      "role": "Developer Tooling",
+      "description": "Fast AST-based static analysis engine and LSP plugin providing real-time linting, complexity metrics, and automated code fix suggestions.",
+      "tags": [
+        { "name": "Python" },
+        { "name": "Rust" },
+        { "name": "LSP" },
+        { "name": "CLI" }
+      ],
+      "image": "/img/project_codelint.webp",
+      "link": "https://github.com/example/codelint-server"
+    },
+    {
+      "title": "TaskFlow Daemon",
+      "role": "Systems & Services",
+      "description": "Resilient background worker daemon supporting cron schedules, dynamic pool autoscaling, exponential backoff retries, and structured JSON telemetry.",
+      "tags": [
+        { "name": "Go" },
+        { "name": "Redis" },
+        { "name": "Prometheus" },
+        { "name": "Docker" }
+      ],
+      "image": "/img/project_taskflow.webp",
+      "link": "https://github.com/example/taskflow-daemon"
     }
   ],
   "experience": [
     {
-      "title": "Systems & DevOps Engineer",
-      "company": "Tech Solutions Inc.",
-      "years": "2023 - Present",
+      "years": "2024 — Present",
+      "title": "Senior Software Engineer",
+      "company": "CloudScale Systems",
       "bullets": [
-        "Architected containerized microservices and automated deployment pipelines using Docker Compose and GitHub Actions.",
-        "Configured secure reverse proxies (Nginx/Caddy) with automated TLS certificates and DNS load balancing.",
-        "Maintained 99.9% availability across production Linux clusters and automated off-site backups."
+        "Architected distributed microservices handling 50k+ req/sec with 99.99% uptime SLA.",
+        "Led migration of legacy monolith to containerized Go services with Redis caching, cutting P99 latency by 42%.",
+        "Mentored junior engineers and instituted automated integration test pipelines across engineering squads."
       ]
     },
     {
-      "title": "Systems Administrator",
-      "company": "Enterprise Cloud Systems",
-      "years": "2021 - 2023",
+      "years": "2022 — 2024",
+      "title": "Software Engineer",
+      "company": "Apex Digital Labs",
       "bullets": [
-        "Managed physical rackmount hardware, switch configurations, VLAN routing, and firewall rules.",
-        "Authored custom Bash and Python automation scripts for scheduled system health audits.",
-        "Spearheaded OS migration and hardened SSH/firewall configurations across 50+ instances."
+        "Engineered customer-facing React and TypeScript web applications with sub-second page loads.",
+        "Developed robust REST and GraphQL APIs with automated OpenAPI documentation and schema validation.",
+        "Built automated CI/CD deployment pipelines cutting staging and production release cycle times by 65%."
       ]
+    },
+    {
+      "years": "2021 — 2022",
+      "title": "Junior Backend Developer",
+      "company": "Nexlify Solutions",
+      "bullets": [
+        "Implemented data ingestion pipelines and database migrations using PostgreSQL and Python.",
+        "Wrote comprehensive unit tests and automated regression suites achieving 90%+ code coverage."
+      ]
+    }
+  ],
+  "credentials": [
+    {
+      "years": "2025",
+      "title": "AWS Certified Solutions Architect – Associate",
+      "institution": "Amazon Web Services",
+      "link": "https://aws.amazon.com/verification"
+    },
+    {
+      "years": "2024",
+      "title": "CKAD: Certified Kubernetes Application Developer",
+      "institution": "Cloud Native Computing Foundation",
+      "link": "https://www.cncf.io/certification/ckad/"
+    },
+    {
+      "years": "2023",
+      "title": "Meta Certified Full-Stack Developer",
+      "institution": "Meta",
+      "link": "https://www.coursera.org/professional-certificates/meta-full-stack-engineer"
     }
   ]
 }

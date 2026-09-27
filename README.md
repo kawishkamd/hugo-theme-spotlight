@@ -1,8 +1,8 @@
 # Baremetal — Hugo Portfolio Theme
 
-A minimalist, high-performance personal portfolio theme engineered for systems administrators, DevOps engineers, and backend developers.
+A spotlight-driven, high-performance personal portfolio theme engineered for software engineers, backend architects, and full-stack developers.
 
-Zero external runtime dependencies. Zero npm packages. 100% Google Lighthouse scores. Sub-80ms build times.
+Zero external runtime dependencies. Zero npm packages. 100% Google Lighthouse scores. Sub-50ms build times.
 
 ![Baremetal Screenshot](images/screenshot.png)
 
@@ -11,11 +11,12 @@ Zero external runtime dependencies. Zero npm packages. 100% Google Lighthouse sc
 ## ✨ Features
 
 - **⚡ Blazing Fast Build Times:** Native Hugo Pipes compilation with zero external build tools (no Node, npm, Tailwind, or Webpack required).
+- **✨ Cursor Spotlight Glow:** Sleek interactive mouse-tracking spotlight gradient on featured project cards and project grid items.
 - **🌓 Instant Zero-FOUC Dark/Light Mode:** Pure CSS/JS theme switcher synchronized with user system preferences (`prefers-color-scheme`) and persistent `localStorage`.
+- **🚀 Out-of-the-Box Demo Mode:** Works immediately on fresh `hugo new site` installations with built-in fallback data. No empty screens!
 - **📊 Interactive GitHub Activity Heatmap:** Clean, lightweight SVG contribution calendar generated automatically via the included Python utility script.
-- **♿ WCAG 2.4.1 / 2.4.7 Accessible:** Built-in "Skip to content" link and visible `:focus-visible` focus rings for keyboard navigation.
 - **📱 100% Responsive Design:** Seamlessly adapts from 320px mobile screens to ultrawide desktop viewports.
-- **🧩 Modular Section Toggles:** Turn sections (Projects, Experience, Certifications, Heatmap, Writing, Contact) on or off directly from your `hugo.yaml`.
+- **🧩 Modular Section Toggles:** Turn sections (Spotlight, Projects, Experience, Tech Stack, Certifications, Heatmap, Contact) on or off directly from your `hugo.yaml`.
 - **🔍 SEO & Social Ready:** Automatic OpenGraph meta tags, Twitter card summaries, and Schema.org JSON-LD structured data.
 
 ---
@@ -35,11 +36,14 @@ Add Baremetal as a Git submodule:
 git submodule add https://github.com/kawishkamd/hugo-theme-baremetal.git themes/baremetal
 ```
 
-### 3. Copy Example Site Data
-Get started immediately by copying the demo content:
+### 3. Copy Example Site Data (Recommended)
+Get started immediately by copying the demo content and configuration:
 ```bash
 cp -r themes/baremetal/exampleSite/* .
+rm hugo.toml   # Hugo uses the copied hugo.yaml
 ```
+
+*(Note: Even without copying `exampleSite`, Baremetal ships with built-in demo data, so setting `theme = "baremetal"` in your `hugo.toml` works immediately!)*
 
 ### 4. Run the Development Server
 ```bash
@@ -56,16 +60,23 @@ Baremetal is 100% "variable-ready". Customize everything inside your `hugo.yaml`
 ```yaml
 baseURL: 'https://example.com/'
 locale: 'en-us'
-title: 'Baremetal Portfolio'
+title: 'Alex Rivera | Software Engineer'
 theme: 'baremetal'
 
 params:
   # Identity & Header
-  author: "Alex Morgan"
-  brand_text: "AM"
-  role: "Systems & Infrastructure Engineer"
-  hero_description: "Automating systems and building reliable infrastructure from bare metal to cloud."
-  site_description: "A minimalist portfolio theme engineered for DevOps developers."
+  author: "Alex Rivera"
+  brand_text: "AR"
+  role: "Software Engineer"
+  hero_description: "Building scalable web applications, distributed systems, and modern developer tooling."
+  hero_bio: "I craft clean code, design robust backend microservices, and build modern reactive interfaces - powered by"
+  hero_chips:
+    - "TypeScript"
+    - "Go"
+    - "React"
+    - "Python"
+    - "PostgreSQL"
+    - "Docker"
   avatar: "/img/avatar.webp"      # Stored in static/img/
   site_image: "/img/share.jpg"     # OpenGraph share preview
   verified_badge: true             # Show verified badge next to name
@@ -73,30 +84,28 @@ params:
   # Social Profiles (Omit any to hide icon)
   github: "https://github.com/example"
   linkedin: "https://linkedin.com/in/example"
-  linkedin_name: "Alex Morgan"
-  youtube: "https://youtube.com/@example"
+  linkedin_name: "Alex Rivera"
   x: "https://x.com/example"
   email: "alex@example.com"
-  medium: "https://medium.com/@example"
 
-  # Section Toggles (Set to false to hide)
+  # Section Toggles (Set to false to hide any section)
   sections:
+    spotlight: true
     projects: true
     experience: true
+    tech_stack: true
     credentials: true
     github_activity: true
-    writing: true
     contact: true
 
-  # Contact & Sticky Note Annotation
+  # Contact
   contact_heading: "Let's work together."
-  contact_annotation: true
-  contact_note: "contact is right here - say hello :)"
+  contact_bio: "Available for full-stack engineering roles, distributed systems consulting, and technical architecture."
 
   # Footer
-  footer_quote: "Code with precision. Ship with confidence."
+  footer_quote: "Writing clean code. Shipping reliable systems."
 
-# Navigation Menu
+# Navigation Menu (Optional)
 menus:
   main:
     - name: "Projects"
@@ -128,15 +137,14 @@ You can automate this in your CI/CD pipeline (e.g. GitHub Actions) to refresh yo
 
 All projects, work history, and credentials live in structured data files inside `data/`:
 
-- **`data/portfolio.json`**: Holds `projects`, `experience`, and `credentials`.
-- **`data/articles.json`**: Holds technical articles or blog post summaries.
+- **`data/portfolio.json`**: Holds `spotlight`, `projects`, `experience`, `credentials`, and `tags` (for the tech stack marquee).
 - **`data/github_contributions.json`**: Holds the contribution matrix.
 
 ---
 
 ## 🚢 Deployment
 
-### GitHub Pages (Recommended)
+### GitHub Pages
 Add `.github/workflows/deploy.yml`:
 ```yaml
 name: Deploy to GitHub Pages

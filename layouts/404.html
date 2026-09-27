@@ -1,28 +1,29 @@
 {{ define "main" }}
 <div class="dedicated-page-wrapper error-page-wrapper">
-  <div class="card-dashed error-card">
+  <div class="card-spotlight error-card">
     <div class="error-status-badge">
       <span class="error-status-dot"></span>
-      <span class="error-status-code">404</span>
-      <span class="error-status-sep">·</span>
-      <span class="error-status-label">NOT FOUND</span>
+      <span class="error-status-code">HTTP 404</span>
+      <span class="error-status-sep">//</span>
+      <span class="error-status-label">NOT_FOUND</span>
     </div>
 
-    <h1 class="error-title">Page Not Found</h1>
+    <h1 class="error-title">Endpoint Not Found</h1>
 
     <p class="error-desc">
-      The requested route or resource does not exist, was relocated, or is temporarily offline.
+      The requested route or resource does not exist on this host, was relocated, or is temporarily offline.
     </p>
 
     <div class="error-cta-row">
-      <a href="{{ "/" | relLangURL }}" class="section-sublink">
-        <span class="section-sublink-arrow">←</span>
+      <a href="{{ "/" | relLangURL }}" class="btn-primary">
+        <svg class="btn-back-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
         <span>Return Home</span>
       </a>
-      <span class="text-project-tag-sep">·</span>
-      <a href="{{ "/projects/" | relLangURL }}" class="section-sublink">
+      <a href="{{ "/projects/" | relLangURL }}" class="btn-secondary">
         <span>Explore Projects</span>
-        <span class="section-sublink-arrow">→</span>
       </a>
     </div>
   </div>

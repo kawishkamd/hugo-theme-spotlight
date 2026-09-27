@@ -1,17 +1,19 @@
 name = "baremetal"
 license = "MIT"
 licenselink = "https://github.com/kawishkamd/hugo-theme-baremetal/blob/main/LICENSE"
-description = "A minimalist, zero-dependency, high-performance portfolio theme for engineers and developers."
+description = "A spotlight-driven, zero-dependency, high-performance portfolio theme for software engineers and developers."
 homepage = "https://github.com/kawishkamd/hugo-theme-baremetal"
 demosite = "https://kawishkamd.github.io"
-tags = ["portfolio", "minimal", "dark-mode", "clean", "responsive", "developer", "devops", "homelab"]
+tags = ["portfolio", "software-engineer", "spotlight", "minimal", "dark-mode", "clean", "responsive", "developer"]
 features = [
   "Zero dependencies (no Node, npm, Tailwind, or Webpack)",
+  "Interactive cursor spotlight cards",
   "Instant zero-FOUC dark/light mode toggle",
-  "Sub-80ms build times",
-  "Interactive GitHub activity heatmap SVG",
+  "Sub-50ms build times",
+  "Interactive GitHub activity heatmap",
+  "Out-of-the-box demo mode with zero configuration",
   "Fully variable-ready YAML/TOML configuration",
-  "100% responsive and accessible (WCAG 2.4.1 / 2.4.7)"
+  "100% responsive and accessible"
 ]
 min_version = "0.120.0"
 

@@ -1,52 +1,59 @@
 baseURL: 'https://example.com/'
 locale: 'en-us'
 disableKinds: ["taxonomy", "term"]
-title: 'Baremetal Portfolio'
+title: 'Alex Rivera | Software Engineer'
 enableRobotsTXT: true
 buildFuture: true
 theme: 'baremetal'
 
 params:
   # Identity & Header
-  author: "Alex Morgan"
-  brand_text: "AM"
-  role: "Systems & Infrastructure Engineer"
-  hero_description: "Automating systems and building reliable infrastructure from bare metal to cloud."
-  site_description: "A minimalist, zero-dependency portfolio theme engineered for systems administrators and DevOps developers."
+  author: "Alex Rivera"
+  brand_text: "AR"
+  role: "Software Engineer"
+  hero_description: "Building scalable web applications, distributed systems, and modern developer tooling."
+  hero_bio: "I craft clean code, design robust backend microservices, and build modern reactive interfaces - powered by"
+  hero_chips:
+    - "TypeScript"
+    - "Go"
+    - "React"
+    - "Python"
+    - "PostgreSQL"
+    - "Docker"
+  site_description: "Portfolio of Alex Rivera, a Software Engineer sharing full-stack projects, distributed systems, and developer tools."
   site_image: "/img/share.jpg"
-  avatar: "/img/avatar.webp" # or /img/avatar.svg
+  avatar: "/img/avatar.webp"
   verified_badge: true
 
   # SEO & Verification (Optional)
   # google_site_verification: "your-code-here"
+  # google_analytics: "G-XXXXXXXXXX"
 
   # Social Links
   github: "https://github.com/example"
   linkedin: "https://linkedin.com/in/example"
-  linkedin_name: "Alex Morgan"
-  youtube: "https://youtube.com/@example"
+  linkedin_name: "Alex Rivera"
   x: "https://x.com/example"
   email: "alex@example.com"
-  medium: "https://medium.com/@example"
 
   # Modular Section Toggles (set to false to hide any section)
   sections:
+    spotlight: true
     projects: true
     experience: true
+    tech_stack: true
     credentials: true
     github_activity: true
-    writing: true
     contact: true
 
-  # Contact & Sticky Note Annotation
+  # Contact
   contact_heading: "Let's work together."
-  contact_annotation: true
-  contact_note: "contact is right here - say hello :)"
+  contact_bio: "Available for full-stack engineering roles, distributed systems consulting, and technical architecture. Open to discuss web performance, backend scalability, and open-source tooling."
 
   # Footer
-  footer_quote: "Code with precision. Ship with confidence."
+  footer_quote: "Writing clean code. Shipping reliable systems."
 
-# Navigation Menu (Optional - defaults to Projects, Experience, Certs if omitted)
+# Navigation Menu (Optional)
 menus:
   main:
     - name: "Projects"

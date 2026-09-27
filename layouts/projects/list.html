@@ -13,44 +13,56 @@
     <p class="dedicated-page-desc">{{ .Params.description | default .Description }}</p>
   </div>
 
-  <!-- Projects List (Text-Only) -->
-  <div class="text-projects-list">
+  <!-- Projects Grid -->
+  <div class="projects-grid">
     {{ range hugo.Data.portfolio.projects }}
-    <article class="text-project-entry">
-      <div class="text-project-header">
-        <div class="text-project-title-group">
+    <div class="card-spotlight project-card-item">
+      {{ if .link }}
+      <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="project-card-thumb-wrap" aria-label="Visit {{ .title }}">
+        <img src="{{ .image | relURL }}" alt="{{ .title }} preview" class="project-card-thumb" loading="lazy" width="500" height="280">
+      </a>
+      {{ else }}
+      <div class="project-card-thumb-wrap">
+        <img src="{{ .image | relURL }}" alt="{{ .title }} preview" class="project-card-thumb" loading="lazy" width="500" height="280">
+      </div>
+      {{ end }}
+      <div class="project-card-info">
+        <div class="project-card-title-row">
           {{ if .link }}
-          <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="text-project-title-link">
-            <h2 class="text-project-title">{{ .title }}</h2>
+          <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="project-card-title-link">
+            <h2 class="project-card-title">{{ .title }}</h2>
           </a>
           {{ else }}
-          <h2 class="text-project-title">{{ .title }}</h2>
+          <h2 class="project-card-title">{{ .title }}</h2>
           {{ end }}
-          {{ if .featured }}
-          <span class="project-featured-badge">FEATURED</span>
-          {{ end }}
-          <span class="text-project-role">· {{ .role }}</span>
         </div>
-
-        {{ if .link }}
-        <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="text-project-link">
-          <span>{{ if strings.Contains .link "github.com" }}View Source{{ else }}Visit Site{{ end }}</span>
-          <span class="text-project-arrow">→</span>
-        </a>
-        {{ else }}
-        <span class="text-project-homelab">Homelab Service</span>
+        {{ if .role }}
+        <p class="project-card-role">{{ .role }}</p>
         {{ end }}
+        <p class="project-card-desc">{{ .description }}</p>
+        <div class="featured-tags-row">
+          {{ range .tags }}
+          <span class="tag-badge">{{ if (reflect.IsMap .) }}{{ .name }}{{ else }}{{ . }}{{ end }}</span>
+          {{ end }}
+        </div>
       </div>
-
-      <p class="text-project-desc">{{ .description }}</p>
-
-      <div class="text-project-tags">
-        {{ range $i, $tag := .tags }}
-          {{ if $i }}<span class="text-project-tag-sep">·</span>{{ end }}
-          <span class="text-project-tag">{{ if (reflect.IsMap $tag) }}{{ $tag.name }}{{ else }}{{ $tag }}{{ end }}</span>
-        {{ end }}
+      <div class="project-card-footer">
+        <div class="project-card-divider"></div>
+        <div class="project-card-action-bar">
+          {{ if .link }}
+          <a href="{{ .link }}" target="_blank" rel="noopener noreferrer" class="project-visit-link">
+            <span>{{ if strings.Contains .link "github.com" }}View Source{{ else }}Visit Site{{ end }}</span>
+            <svg class="visit-arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+          {{ else }}
+          <span class="project-private-label">Homelab Service</span>
+          {{ end }}
+        </div>
       </div>
-    </article>
+    </div>
     {{ end }}
   </div>
 </div>
