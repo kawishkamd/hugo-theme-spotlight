@@ -84,8 +84,8 @@
     {{- with $heroChips -}}
       {{- $len := len . -}}
       {{- range $idx, $chip := . -}}
-        {{- if and (gt $len 1) (eq $idx (sub $len 1)) }} and {{ end -}}
-        <span class="tech-chip-pill">{{ $chip }}</span>{{- if lt $idx (sub $len 2) }}, {{ end -}}
+        {{- if and (gt $len 1) (eq $idx (sub $len 1)) }} and {{ else if gt $idx 0 }} {{ end -}}
+        <span class="tech-chip-pill">{{ $chip }}</span>{{- if lt $idx (sub $len 2) }},{{ end -}}
       {{- end -}}.
     {{- end -}}
   </p>

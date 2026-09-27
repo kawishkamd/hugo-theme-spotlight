@@ -114,18 +114,14 @@ function initGitHubActivity() {
       weeks.push(padded.slice(i, i + 7));
     }
 
-    const weekMonths = weeks.map(w => {
-      const first = w.find(Boolean);
-      return first ? new Date(first.date + 'T00:00:00').getMonth() : null;
-    });
-
     const monthRow = document.createElement('div');
     monthRow.className = 'github-months-row';
-    weekMonths.forEach((m, idx) => {
+    weeks.forEach(w => {
       const col = document.createElement('div');
       col.className = 'github-month-label';
-      if (m !== null && (idx === 0 || m !== weekMonths[idx - 1])) {
-        col.textContent = months[m];
+      const firstOfMonth = w.find(d => d && d.date && d.date.endsWith('-01'));
+      if (firstOfMonth) {
+        col.textContent = months[new Date(firstOfMonth.date + 'T00:00:00').getMonth()];
       }
       monthRow.appendChild(col);
     });

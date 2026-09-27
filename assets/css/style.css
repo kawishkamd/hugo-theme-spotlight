@@ -1011,6 +1011,20 @@ html.dark-mode .hero-social-link.social-gh:hover { color: #ffffff; }
   overflow-x: auto;
   padding-bottom: 0.5rem;
   scrollbar-width: thin;
+  -webkit-overflow-scrolling: touch;
+}
+
+.github-graph-scroll::-webkit-scrollbar {
+  height: 4px;
+}
+
+.github-graph-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.github-graph-scroll::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 9999px;
 }
 
 .github-graph-table {

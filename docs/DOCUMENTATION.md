@@ -253,43 +253,17 @@ Place all personal media inside `static/img/` in your site root:
 ---
 
 ## 7. GitHub Contribution Heatmap
-
-The theme includes a standalone Python 3 script to pull your live GitHub contribution graph without relying on third-party iframe widgets:
-
-```bash
-python themes/hugo-theme-spotlight/tools/fetch_contributions.py <your-github-username> data/github_contributions.json
-```
-
-### Automated GitHub Actions Workflow
-Create `.github/workflows/update-contributions.yml` in your site repository to automatically refresh your heatmap weekly:
+ 
+The theme automatically renders your live 52-week contribution activity calendar in real time. Simply configure your GitHub profile in `hugo.yaml`:
 
 ```yaml
-name: Update GitHub Activity Heatmap
-
-on:
-  schedule:
-    - cron: '0 0 * * 0' # Every Sunday at midnight
-  workflow_dispatch:     # Allows manual trigger
-
-jobs:
-  update-heatmap:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Fetch Contributions
-        run: |
-          python themes/hugo-theme-spotlight/tools/fetch_contributions.py ${{ github.repository_owner }} data/github_contributions.json
-      - name: Commit & Push if changed
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data/github_contributions.json
-          git diff --quiet && git diff --staged --quiet || (git commit -m "chore: refresh github contributions matrix" && git push)
+params:
+  github: "https://github.com/your-username"
+  sections:
+    github_activity: true
 ```
+
+The theme's lightweight JavaScript engine queries your public GitHub activity directly in the browser and caches it in `localStorage` for 4 hours. No external dependencies, Python scripts, or CI/CD cron jobs are required.
 
 ---
 
@@ -379,7 +353,7 @@ jobs:
 **Fix:** Verify that `theme: 'hugo-theme-spotlight'` matches the directory name under `themes/` (e.g. `themes/hugo-theme-spotlight`). Also ensure you removed default boilerplate `content/_index.md` files if they contain `draft: true`.
 
 #### Q: The GitHub Heatmap is empty or missing.
-**Fix:** Either copy `exampleSite/data/github_contributions.json` or generate one with `python themes/hugo-theme-spotlight/tools/fetch_contributions.py <your-username> data/github_contributions.json`.
+**Fix:** Ensure `params.sections.github_activity: true` and `params.github: "https://github.com/your-username"` are set in your `hugo.yaml`.
 
 #### Q: My images show a 404 or broken icon.
 **Fix:** In Hugo, static images placed in `static/img/avatar.webp` must be referenced starting with a leading slash: `/img/avatar.webp`, NOT `static/img/avatar.webp`.

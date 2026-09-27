@@ -123,15 +123,16 @@ menus:
 
 ---
 
-## 📊 Generating Your GitHub Heatmap
+## 📊 Automatic GitHub Activity Heatmap
 
-Spotlight includes a zero-dependency Python script to scrape your live GitHub contribution graph and output the exact JSON structure:
+Spotlight automatically renders your 52-week contribution activity calendar. Simply set your GitHub profile URL in `hugo.yaml`:
 
-```bash
-python themes/hugo-theme-spotlight/tools/fetch_contributions.py <your-github-username> data/github_contributions.json
+```yaml
+params:
+  github: "https://github.com/your-username"
 ```
 
-You can automate this in your CI/CD pipeline (e.g. GitHub Actions) to refresh your heatmap weekly or on every deployment!
+The theme dynamically fetches your latest contributions directly in the browser and caches them in `localStorage` for 4 hours. No external toolchains, Python scripts, or API keys required!
 
 ---
 
