@@ -98,9 +98,11 @@
             <li><a href="{{ .URL | relLangURL }}" class="nav-link{{ if eq $.RelPermalink .URL }} active{{ end }}"{{ if eq $.RelPermalink .URL }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
             {{ end }}
           {{ else }}
-            <li><a href="{{ "/projects/" | relLangURL }}" class="nav-link{{ if eq .RelPermalink "/projects/" }} active{{ end }}"{{ if eq .RelPermalink "/projects/" }} aria-current="page"{{ end }}>Projects</a></li>
-            <li><a href="{{ "/experience/" | relLangURL }}" class="nav-link{{ if eq .RelPermalink "/experience/" }} active{{ end }}"{{ if eq .RelPermalink "/experience/" }} aria-current="page"{{ end }}>Experience</a></li>
-            <li><a href="{{ "/certifications/" | relLangURL }}" class="nav-link{{ if eq .RelPermalink "/certifications/" }} active{{ end }}"{{ if eq .RelPermalink "/certifications/" }} aria-current="page"{{ end }}>Certs</a></li>
+            {{ $prefix := cond (eq .Kind "home") "" ("/" | relLangURL) }}
+            <li><a href="{{ $prefix }}#projects" class="nav-link">Projects</a></li>
+            <li><a href="{{ $prefix }}#experience" class="nav-link">Experience</a></li>
+            <li><a href="{{ $prefix }}#github-activity" class="nav-link">Activity</a></li>
+            <li><a href="{{ $prefix }}#contact" class="nav-link">Contact</a></li>
           {{ end }}
         </ul>
 
